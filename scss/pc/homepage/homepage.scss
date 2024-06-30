@@ -742,7 +742,7 @@
 			height: 810px;
 			display: flex;
 			flex-direction: row;
-			background: #181a20;
+			background: #2c3e50; /* Dark blue background */
 			.container {
 				flex-direction: column;
 				align-items: center;
@@ -756,15 +756,17 @@
 					justify-content: space-between;
 					.event-card {
 						position: relative;
-						width: 300px;
-						height: 420px;
-						border-radius: 12px;
-						opacity: 0.9;
+						width: 320px;
+						height: 400px;
+						justify-content: space-between;
+						border-radius: 40px; /* More rounded corners */
+						background: #ecf0f1; /* Light grey background */
+						opacity: 0.85;
 						cursor: pointer;
-						transition: opacity 0.4s;
+						transition: opacity 0.4s, transform 0.4s;
 						&:hover {
 							opacity: 1;
-							scale: 1.05;
+							transform: scale(1.05);
 							transition: 0.3s;
 							.more {
 								opacity: 1;
@@ -774,47 +776,47 @@
 							position: absolute;
 							display: flex;
 							flex-direction: column;
-							top: 35px;
-							left: 10px;
-							right: 10px;
+							top: 45px;
+							left: 15px;
+							right: 15px;
 							strong {
-								color: #f64747;
-								font-family: $font;
-								font-size: 25px;
+								color: #e74c3c; /* Red color for the title */
+								font-family: 'Arial, sans-serif'; /* Different font */
+								font-size: 30px;
 								font-style: normal;
-								font-weight: 600;
+								font-weight: 700;
 								line-height: normal;
 								text-transform: capitalize;
 							}
 							span {
-								color: #f66767;
-								font-family: $font;
-								font-size: 20px;
+								color: #3498db; /* Blue color for the subtitle */
+								font-family: 'Arial, sans-serif';
+								font-size: 22px;
 								font-style: normal;
 								font-weight: 500;
-								line-height: 28px;
+								line-height: 30px;
 								text-transform: capitalize;
 							}
 						}
 						.more {
 							position: absolute;
-							left: 10px;
-							right: 10px;
-							bottom: 41px;
+							left: 15px;
+							right: 15px;
+							bottom: 50px;
 							display: flex;
 							flex-direction: row;
 							align-items: center;
 							opacity: 0;
 							span {
-								padding: 0px 5px;
-								border-radius: 5px;
-								background: #fffdfdc4;
-								color: #9c67f6;
-								font-family: $font;
-								font-size: 16px;
+								padding: 0px 8px;
+								border-radius: 8px;
+								background: #34495e; /* Dark blue background for the button */
+								color: #ecf0f1; /* Light grey text */
+								font-family: 'Arial, sans-serif';
+								font-size: 18px;
 								font-style: normal;
 								font-weight: 400;
-								line-height: 26px;
+								line-height: 28px;
 								text-align: justify;
 								cursor: pointer;
 							}
@@ -823,6 +825,7 @@
 				}
 			}
 		}
+
 		.community-board {
 			position: relative;
 			padding: 124px 0px 61px;

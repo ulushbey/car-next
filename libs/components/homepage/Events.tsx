@@ -17,22 +17,21 @@ const eventsData: EventData[] = [
 		imageSrc: '/img/events/INCHEON.webp',
 	},
 	{
-		eventTitle: 'Taebaeksan Snow Festival',
+		eventTitle: 'Seoul Motor Show',
 		city: 'Seoul',
-		description: 'If you have the opportunity to travel to South Korea, do not miss the Taebaeksan Snow Festival!',
+		description: 'If you have the opportunity to travel to South Korea, do not miss the SEOUL MOTOR SHOW',
 		imageSrc: '/img/events/SEOUL.webp',
 	},
 	{
-		eventTitle: 'Suseong Lake Event',
+		eventTitle: 'Deagu Auto Expo',
 		city: 'Daegu',
-		description: 'The Suseong Lake Festival is a culture and arts festival held alongside Suseongmot Lake!',
+		description: 'The Daegu Auto Expo is a one of the useful event held alongside Gyeongsan area!',
 		imageSrc: '/img/events/DAEGU.webp',
 	},
 	{
-		eventTitle: 'Sand Festival',
+		eventTitle: 'Busan Mobility Show',
 		city: 'Busan',
-		description:
-			'Haeundae Sand Festival, the nation’s largest eco-friendly exhibition on sand, is held at Haeundae Beach!',
+		description: 'Busan mobility show, the nation’s popular exhibition in Asia, is held at Haeundae Beach!',
 		imageSrc: '/img/events/BUSAN.webp',
 	},
 ];
