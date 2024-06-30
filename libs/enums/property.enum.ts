@@ -1,13 +1,22 @@
 export enum PropertyType {
-	APARTMENT = 'APARTMENT',
-	VILLA = 'VILLA',
-	HOUSE = 'HOUSE',
+	LIGHT_CAR = 'LIGHT_CAR',
+	MEDIUM = 'MEDIUM',
+	LARGE = 'LARGE',
 }
 
 export enum PropertyStatus {
 	ACTIVE = 'ACTIVE',
 	SOLD = 'SOLD',
 	DELETE = 'DELETE',
+}
+
+export enum PropertyFuel {
+	GASOLINE = 'GASOLINE',
+	DIESEL = 'DIESEL',
+	LPG = 'LPG',
+	ELECTRICITY = 'ELECTRICITY',
+	HYBRID = 'HYBRID',
+	ETC = 'ETC',
 }
 
 export enum PropertyLocation {
@@ -20,4 +29,23 @@ export enum PropertyLocation {
 	CHONJU = 'CHONJU',
 	DAEJON = 'DAEJON',
 	JEJU = 'JEJU',
+}
+
+export enum PropertyOption {
+	SUNROOF = 'SUNROOF',
+	HEADLAMP = 'HEADLAMP',
+	PARKING_DETECTION_SENSOR = 'PARKING_DETECTION_SENSOR',
+	REAR_CAMERA = 'REAR_CAMERA',
+	AIR_CONDITIONER = 'AIR_CONDITIONER',
+	SMART_KEY = 'SMART_KEY',
+	NAVIGATION = 'NAVIGATION',
+	HEATED_SEAT = 'HEATED_SEAT',
+	VENTILATED_SEAT = 'VENTILATED_SEAT',
+	LEATHER_SEAT = 'LEATHER_SEAT',
+}
+
+export enum PropertyTransmission {
+	AUTO = 'AUTO',
+	MANUAL = 'MANUAL',
+	SEMI_AUTO = 'SEMI_AUTO',
 }
