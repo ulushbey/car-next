@@ -100,6 +100,7 @@
 									width: 18px;
 									height: 17px;
 									top: 18px;
+									bottom: 10px;
 									left: 15px;
 								}
 								.property-checkbox {
@@ -213,8 +214,8 @@
 						flex-wrap: wrap;
 						gap: 23px;
 						.card-config {
-							width: 296px;
-							height: 413px;
+							width: 416px;
+							height: 380px;
 							margin-bottom: 7px;
 							border-radius: 12px;
 							background: #fff;
@@ -222,13 +223,13 @@
 							.top {
 								position: relative;
 								width: 100%;
-								height: 240px;
+								height: 440px;
 								a {
 									height: 100%;
 								}
 								img {
 									width: 100%;
-									height: 100%;
+									height: 190px;
 									object-fit: cover;
 									border-radius: 12px 12px 0 0;
 								}
@@ -238,12 +239,11 @@
 									left: 16px;
 									display: flex;
 									width: 80px;
-									height: 30px;
+									height: 80px;
 									justify-content: center;
 									align-items: center;
 									border-radius: 6px;
 									padding: 6px 20px;
-									background: #eb6753;
 									color: #fff;
 									text-align: center;
 									text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -277,13 +277,14 @@
 							}
 							.bottom {
 								width: 100%;
-								height: 173px;
-								padding: 20px 16px 10px 16px;
+								height: 560px;
+								padding: 10px 10px 10px 16px;
+								// background: aqua;
 								.name-address {
 									width: 100%;
-									height: 48px;
+									height: 88px;
 									gap: 5px;
-									margin-bottom: 20px;
+									// margin-bottom: 20px;
 									.name {
 										width: 100%;
 										height: 23px;
@@ -314,20 +315,26 @@
 								.options {
 									flex-direction: row;
 									width: 100%;
-									height: 20px;
-									gap: 20px;
+									height: 100%;
+									gap: 10px;
+									// background: red;
 									margin-bottom: 10px;
 									.option {
 										flex-direction: row;
-										gap: 5px;
+										gap: 15px;
 										align-items: center;
 										p {
-											color: #181a20;
+											color: #4068e1;
 											font-family: $font;
 											font-size: 13px;
 											font-style: normal;
 											font-weight: 400;
 											line-height: normal;
+										}
+										.small-icon {
+											width: 20px;
+											height: 20px;
+											color: #4068e1;
 										}
 									}
 								}
@@ -353,7 +360,7 @@
 											line-height: normal;
 										}
 										.disabled-type {
-											color: rgba(143, 143, 143, 0.54);
+											color: rgba(36, 28, 75, 0.54);
 											font-family: $font;
 											font-style: normal;
 											line-height: normal;
@@ -394,7 +401,7 @@
 								font-size: 24px;
 								font-style: normal;
 								font-weight: 275;
-								line-height: 26px;
+								line-height: 36px;
 							}
 						}
 					}

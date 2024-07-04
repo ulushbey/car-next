@@ -173,11 +173,11 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 						</div>
 						<div>
 							<img src="/img/icons/fuel.svg" alt="" />
-							<span>{property.propertyFuel} E-car</span>
+							<span>{property.propertyFuel}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property.propertyTransmission} auto</span>
+							<img src="/img/icons/expand.png" alt="" />
+							<span>{property.propertyTransmission}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
@@ -224,11 +224,11 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 						</div>
 						<div>
 							<img src="/img/icons/fuel.svg" alt="" />
-							<span>{property.propertyFuel} gasoline</span>
+							<span>{property.propertyFuel}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property.propertyTransmission} auto</span>
+							<img src="/img/icons/manual.svg" alt="" />
+							<span>{property.propertyTransmission}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />

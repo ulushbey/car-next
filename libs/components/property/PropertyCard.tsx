@@ -71,13 +71,15 @@ const PropertyCard = (props: PropertyCardType) => {
 					</Stack>
 					<Stack className="options">
 						<Stack className="option">
-							<img src="/img/icons/bed.svg" alt="" /> <Typography>{property.propertyFuel} </Typography>
+							<img src="/img/icons/fuel.svg" alt="" className="small-icon" />{' '}
+							<Typography>{property.propertyFuel} </Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/room.svg" alt="" /> <Typography>{property.propertyTransmission} </Typography>
+							<img src="/img/icons/manual.svg" alt="" className="small-icon" />{' '}
+							<Typography>{property.propertyTransmission} </Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/expand.svg" alt="" /> <Typography>{property.propertyType} </Typography>
+							<img src="/img/icons/car.svg" alt="" /> <Typography>{property.propertyType} </Typography>
 						</Stack>
 					</Stack>
 					<Stack className="divider"></Stack>

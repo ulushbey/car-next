@@ -53,7 +53,7 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 							<span>{property?.propertyFuel}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
+							<img src="/img/icons/manual.svg" alt="" />
 							<span>{property?.propertyTransmission}</span>
 						</div>
 					</div>
@@ -99,11 +99,11 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 						</div>
 						<div>
 							<img src="/img/icons/fuel.svg" alt="" />
-							<span>{property?.propertyFuel}Gasoline</span>
+							<span>{property?.propertyFuel}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertyTransmission}auto</span>
+							<img src="/img/icons/manual.svg" alt="" />
+							<span>{property?.propertyTransmission}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />

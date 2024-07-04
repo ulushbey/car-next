@@ -45,8 +45,8 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 							<span>{property?.propertyFuel}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertyTransmission} auto</span>
+							<img src="/img/icons/manual.svg" alt="" />
+							<span>{property?.propertyTransmission}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
@@ -97,7 +97,7 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 							<span>{property.propertyFuel}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
+							<img src="/img/icons/manual.svg" alt="" />
 							<span>{property.propertyTransmission}</span>
 						</div>
 					</div>
