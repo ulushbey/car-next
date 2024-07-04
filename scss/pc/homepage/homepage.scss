@@ -1500,6 +1500,153 @@
 			}
 		}
 
+		// .community-board {
+		// 	position: relative;
+		// 	padding: 124px 0px 61px;
+		// 	width: 100%;
+		// 	height: 860px;
+		// 	display: flex;
+		// 	flex-direction: row;
+		// 	.container {
+		// 		flex-direction: column;
+		// 		align-items: center;
+		// 		.community-main {
+		// 			width: 100%;
+		// 			margin-top: 60px;
+		// 			display: flex;
+		// 			flex-direction: row;
+		// 			justify-content: space-between;
+		// 			.center-line {
+		// 				height: 90%;
+		// 				align-self: end;
+		// 			}
+		// 			.content-top {
+		// 				margin-bottom: 26px;
+		// 				width: 100%;
+		// 				height: 30px;
+		// 				display: flex;
+		// 				flex-direction: row;
+		// 				justify-content: flex-end;
+		// 				align-items: center;
+		// 				span {
+		// 					font-family: $font;
+		// 					font-style: normal;
+		// 					font-weight: 500;
+		// 					font-size: 16px;
+		// 					line-height: 36px;
+		// 					color: #616161;
+		// 					cursor: pointer;
+		// 				}
+		// 				img {
+		// 					margin-left: 10px;
+		// 					width: 12px;
+		// 					height: 12px;
+		// 				}
+		// 			}
+		// 			.community-left {
+		// 				width: 642px;
+		// 				height: auto;
+		// 				display: flex;
+		// 				flex-direction: column;
+		// 				.card-wrap {
+		// 					display: flex;
+		// 					flex-direction: row;
+		// 					flex-wrap: wrap;
+		// 					.vertical-card {
+		// 						margin-right: 12px;
+		// 						margin-bottom: 18px;
+		// 						width: 202px;
+		// 						display: flex;
+		// 						flex-direction: column;
+		// 						cursor: pointer;
+		// 						.community-img {
+		// 							width: 100%;
+		// 							height: 141px;
+		// 							background-size: cover;
+		// 							background-repeat: round;
+		// 							border-radius: 5px;
+		// 							div {
+		// 								width: 32px;
+		// 								height: 32px;
+		// 								display: flex;
+		// 								justify-content: center;
+		// 								align-items: center;
+		// 								background: #f54d56;
+		// 								border-radius: 5px 0px;
+		// 								font-family: $font;
+		// 								font-style: normal;
+		// 								font-weight: 400;
+		// 								font-size: 19px;
+		// 								line-height: 36px;
+		// 								letter-spacing: -0.015em;
+		// 								color: #bdbdbd;
+		// 							}
+		// 						}
+		// 						strong {
+		// 							margin-top: 10px;
+		// 							font-family: $font;
+		// 							font-style: normal;
+		// 							font-weight: 700;
+		// 							font-size: 18px;
+		// 							line-height: 36px;
+		// 							letter-spacing: 0.105em;
+		// 							color: #000000;
+		// 						}
+		// 						span {
+		// 							font-family: $font;
+		// 							font-style: normal;
+		// 							font-weight: 400;
+		// 							font-size: 16px;
+		// 							line-height: 19px;
+		// 							letter-spacing: -0.015em;
+		// 							color: #d3d3d3;
+		// 						}
+		// 					}
+		// 				}
+		// 			}
+		// 			.community-right {
+		// 				width: 590px;
+		// 				height: auto;
+		// 				display: flex;
+		// 				flex-direction: column;
+		// 				.horizontal-card {
+		// 					display: flex;
+		// 					flex-direction: row;
+		// 					cursor: pointer;
+		// 					margin-bottom: 34px;
+		// 					img {
+		// 						width: 180px;
+		// 						height: 111px;
+		// 						border-radius: 7px;
+		// 					}
+		// 					div {
+		// 						margin-left: 25px;
+		// 						display: flex;
+		// 						flex-direction: column;
+		// 						strong {
+		// 							margin-top: 15px;
+		// 							font-family: $font;
+		// 							font-style: normal;
+		// 							font-weight: 500;
+		// 							font-size: 13px;
+		// 							letter-spacing: 0.105em;
+		// 							color: #212121;
+		// 						}
+		// 						span {
+		// 							font-family: $font;
+		// 							font-style: normal;
+		// 							font-weight: 500;
+		// 							font-size: 13px;
+		// 							line-height: 36px;
+		// 							letter-spacing: 0.105em;
+		// 							color: #bdbdbd;
+		// 						}
+		// 					}
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
 		.community-board {
 			position: relative;
 			padding: 124px 0px 61px;
@@ -1507,19 +1654,24 @@
 			height: 860px;
 			display: flex;
 			flex-direction: row;
+			background: #f8f9fa; // Light background for better contrast
+
 			.container {
 				flex-direction: column;
 				align-items: center;
+
 				.community-main {
 					width: 100%;
 					margin-top: 60px;
 					display: flex;
 					flex-direction: row;
 					justify-content: space-between;
+
 					.center-line {
 						height: 90%;
 						align-self: end;
 					}
+
 					.content-top {
 						margin-bottom: 26px;
 						width: 100%;
@@ -1528,6 +1680,7 @@
 						flex-direction: row;
 						justify-content: flex-end;
 						align-items: center;
+
 						span {
 							font-family: $font;
 							font-style: normal;
@@ -1537,21 +1690,25 @@
 							color: #616161;
 							cursor: pointer;
 						}
+
 						img {
 							margin-left: 10px;
 							width: 12px;
 							height: 12px;
 						}
 					}
+
 					.community-left {
 						width: 642px;
 						height: auto;
 						display: flex;
 						flex-direction: column;
+
 						.card-wrap {
 							display: flex;
 							flex-direction: row;
 							flex-wrap: wrap;
+
 							.vertical-card {
 								margin-right: 12px;
 								margin-bottom: 18px;
@@ -1559,20 +1716,23 @@
 								display: flex;
 								flex-direction: column;
 								cursor: pointer;
+								border-radius: 15px; // Rounded corners
+								box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Shadow effect
+
 								.community-img {
 									width: 100%;
 									height: 141px;
 									background-size: cover;
 									background-repeat: round;
-									border-radius: 5px;
+									border-radius: 15px 15px 0 0; // Rounded corners on the top
 									div {
 										width: 32px;
 										height: 32px;
 										display: flex;
 										justify-content: center;
 										align-items: center;
-										background: #f54d56;
-										border-radius: 5px 0px;
+										background: #14617b;
+										border-radius: 50%; // Circular shape
 										font-family: $font;
 										font-style: normal;
 										font-weight: 400;
@@ -1582,6 +1742,7 @@
 										color: #bdbdbd;
 									}
 								}
+
 								strong {
 									margin-top: 10px;
 									font-family: $font;
@@ -1592,6 +1753,7 @@
 									letter-spacing: 0.105em;
 									color: #000000;
 								}
+
 								span {
 									font-family: $font;
 									font-style: normal;
@@ -1604,25 +1766,35 @@
 							}
 						}
 					}
+
 					.community-right {
 						width: 590px;
 						height: auto;
 						display: flex;
 						flex-direction: column;
+
 						.horizontal-card {
 							display: flex;
 							flex-direction: row;
 							cursor: pointer;
 							margin-bottom: 34px;
+							align-items: center; // Center items vertically
+							box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Shadow effect
+							padding: 15px; // Padding for spacing
+							border-radius: 15px; // Rounded corners
+
 							img {
-								width: 180px;
+								width: 111px;
 								height: 111px;
-								border-radius: 7px;
+								border-radius: 50%; // Circular shape
+								box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Shadow effect on image
 							}
+
 							div {
 								margin-left: 25px;
 								display: flex;
 								flex-direction: column;
+
 								strong {
 									margin-top: 15px;
 									font-family: $font;
@@ -1632,6 +1804,7 @@
 									letter-spacing: 0.105em;
 									color: #212121;
 								}
+
 								span {
 									font-family: $font;
 									font-style: normal;

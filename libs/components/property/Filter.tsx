@@ -361,14 +361,14 @@ const Filter = (props: FilterType) => {
 						...searchFilter,
 						search: {
 							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, start: value },
+							mileageRange: { ...searchFilter.search.mileageRange, start: value },
 						},
 					})}`,
 					`/property?input=${JSON.stringify({
 						...searchFilter,
 						search: {
 							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, start: value },
+							mileageRange: { ...searchFilter.search.mileageRange, start: value },
 						},
 					})}`,
 					{ scroll: false },
@@ -379,14 +379,14 @@ const Filter = (props: FilterType) => {
 						...searchFilter,
 						search: {
 							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, end: value },
+							mileageRange: { ...searchFilter.search.mileageRange, end: value },
 						},
 					})}`,
 					`/property?input=${JSON.stringify({
 						...searchFilter,
 						search: {
 							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, end: value },
+							mileageRange: { ...searchFilter.search.mileageRange, end: value },
 						},
 					})}`,
 					{ scroll: false },
@@ -710,14 +710,14 @@ const Filter = (props: FilterType) => {
 					</Stack>
 				</Stack>
 				<Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Square meter</Typography>
+					<Typography className={'title'}>Miles</Typography>
 					<Stack className="square-year-input">
 						<FormControl>
 							<InputLabel id="demo-simple-select-label">Min</InputLabel>
 							<Select
 								labelId="demo-simple-select-label"
 								id="demo-simple-select"
-								value={searchFilter?.search?.squaresRange?.start ?? 0}
+								value={searchFilter?.search?.mileageRange?.start ?? 0}
 								label="Min"
 								onChange={(e: any) => propertySquareHandler(e, 'start')}
 								MenuProps={MenuProps}
@@ -725,7 +725,7 @@ const Filter = (props: FilterType) => {
 								{propertySquare.map((square: number) => (
 									<MenuItem
 										value={square}
-										disabled={(searchFilter?.search?.squaresRange?.end || 0) < square}
+										disabled={(searchFilter?.search?.mileageRange?.end || 0) < square}
 										key={square}
 									>
 										{square}
@@ -739,7 +739,7 @@ const Filter = (props: FilterType) => {
 							<Select
 								labelId="demo-simple-select-label"
 								id="demo-simple-select"
-								value={searchFilter?.search?.squaresRange?.end ?? 500}
+								value={searchFilter?.search?.mileageRange?.end ?? 500}
 								label="Max"
 								onChange={(e: any) => propertySquareHandler(e, 'end')}
 								MenuProps={MenuProps}
@@ -747,7 +747,7 @@ const Filter = (props: FilterType) => {
 								{propertySquare.map((square: number) => (
 									<MenuItem
 										value={square}
-										disabled={(searchFilter?.search?.squaresRange?.start || 0) > square}
+										disabled={(searchFilter?.search?.mileageRange?.start || 0) > square}
 										key={square}
 									>
 										{square}

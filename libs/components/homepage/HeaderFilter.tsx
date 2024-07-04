@@ -7,7 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { propertySquare, propertyYears } from '../../config';
-import { PropertyLocation, PropertyType } from '../../enums/property.enum';
+import { PropertyFuel, PropertyLocation, PropertyTransmission, PropertyType } from '../../enums/property.enum';
 import { PropertiesInquiry } from '../../types/property/property.input';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -45,12 +45,13 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	const [searchFilter, setSearchFilter] = useState<PropertiesInquiry>(initialInput);
 	const locationRef: any = useRef();
 	const typeRef: any = useRef();
-	const roomsRef: any = useRef();
+	const fuelsRef: any = useRef();
 	const router = useRouter();
 	const [openAdvancedFilter, setOpenAdvancedFilter] = useState(false);
 	const [openLocation, setOpenLocation] = useState(false);
 	const [openType, setOpenType] = useState(false);
-	const [openRooms, setOpenRooms] = useState(false);
+	const [openFuels, setOpenFuels] = useState(false);
+	const [propertyFuels, setPropertyFuels] = useState<PropertyFuel[]>(Object.values(PropertyFuel));
 	const [propertyLocation, setPropertyLocation] = useState<PropertyLocation[]>(Object.values(PropertyLocation));
 	const [propertyType, setPropertyType] = useState<PropertyType[]>(Object.values(PropertyType));
 	const [yearCheck, setYearCheck] = useState({ start: 1970, end: thisYear });
@@ -67,8 +68,8 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				setOpenType(false);
 			}
 
-			if (!roomsRef?.current?.contains(event.target)) {
-				setOpenRooms(false);
+			if (!fuelsRef?.current?.contains(event.target)) {
+				setOpenFuels(false);
 			}
 		};
 
@@ -82,31 +83,31 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	/** HANDLERS **/
 	const advancedFilterHandler = (status: boolean) => {
 		setOpenLocation(false);
-		setOpenRooms(false);
+		setOpenFuels(false);
 		setOpenType(false);
 		setOpenAdvancedFilter(status);
 	};
 
 	const locationStateChangeHandler = () => {
 		setOpenLocation((prev) => !prev);
-		setOpenRooms(false);
+		setOpenFuels(false);
 		setOpenType(false);
 	};
 
 	const typeStateChangeHandler = () => {
 		setOpenType((prev) => !prev);
 		setOpenLocation(false);
-		setOpenRooms(false);
+		setOpenFuels(false);
 	};
 
-	const roomStateChangeHandler = () => {
-		setOpenRooms((prev) => !prev);
+	const fuelStateChangeHandler = () => {
+		setOpenFuels((prev) => !prev);
 		setOpenType(false);
 		setOpenLocation(false);
 	};
 
 	const disableAllStateHandler = () => {
-		setOpenRooms(false);
+		setOpenFuels(false);
 		setOpenType(false);
 		setOpenLocation(false);
 	};
@@ -139,7 +140,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						typeList: [value],
 					},
 				});
-				roomStateChangeHandler();
+				fuelStateChangeHandler();
 			} catch (err: any) {
 				console.log('ERROR, propertyTypeSelectHandler:', err);
 			}
@@ -147,50 +148,59 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 		[searchFilter],
 	);
 
-	const propertyRoomSelectHandler = useCallback(
+	const propertyFuelSelectHandler = useCallback(
 		async (value: any) => {
 			try {
 				setSearchFilter({
 					...searchFilter,
 					search: {
 						...searchFilter.search,
-						roomsList: [value],
+						typeFuel: [value],
 					},
 				});
 				disableAllStateHandler();
-			} catch (err: any) {
-				console.log('ERROR, propertyRoomSelectHandler:', err);
+			} catch (err) {
+				console.log('ERROR, propertyFuelSelectHandler:', err);
 			}
 		},
 		[searchFilter],
 	);
-
-	const propertyBedSelectHandler = useCallback(
-		async (number: Number) => {
+	const propertyTransmissionSelectHandler = useCallback(
+		async (transmission: PropertyTransmission | null) => {
 			try {
-				if (number != 0) {
-					if (searchFilter?.search?.bedsList?.includes(number)) {
+				const typeTransmission = searchFilter.search.typeTransmission || [];
+
+				if (transmission !== null) {
+					if (typeTransmission.includes(transmission)) {
 						setSearchFilter({
 							...searchFilter,
 							search: {
 								...searchFilter.search,
-								bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
+								typeTransmission: typeTransmission.filter((item) => item !== transmission),
 							},
 						});
 					} else {
 						setSearchFilter({
 							...searchFilter,
-							search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
+							search: {
+								...searchFilter.search,
+								typeTransmission: [...typeTransmission, transmission],
+							},
 						});
 					}
 				} else {
-					delete searchFilter?.search.bedsList;
-					setSearchFilter({ ...searchFilter });
+					setSearchFilter({
+						...searchFilter,
+						search: {
+							...searchFilter.search,
+							typeTransmission: [],
+						},
+					});
 				}
 
-				console.log('propertyBedSelectHandler:', number);
-			} catch (err: any) {
-				console.log('ERROR, propertyBedSelectHandler:', err);
+				console.log('propertyTransmissionSelectHandler:', transmission);
+			} catch (err) {
+				console.log('ERROR, propertyTransmissionSelectHandler:', err);
 			}
 		},
 		[searchFilter],
@@ -236,7 +246,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					search: {
 						...searchFilter.search,
 						// @ts-ignore
-						squaresRange: { ...searchFilter.search.squaresRange, start: parseInt(value) },
+						mileageRange: { ...searchFilter.search.mileageRange, start: parseInt(value) },
 					},
 				});
 			} else {
@@ -245,7 +255,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					search: {
 						...searchFilter.search,
 						// @ts-ignore
-						squaresRange: { ...searchFilter.search.squaresRange, end: parseInt(value) },
+						mileageRange: { ...searchFilter.search.mileageRange, end: parseInt(value) },
 					},
 				});
 			}
@@ -293,16 +303,16 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				delete searchFilter.search.typeList;
 			}
 
-			if (searchFilter?.search?.roomsList?.length == 0) {
-				delete searchFilter.search.roomsList;
+			if (searchFilter?.search?.typeFuel?.length == 0) {
+				delete searchFilter.search.typeFuel;
 			}
 
 			if (searchFilter?.search?.options?.length == 0) {
 				delete searchFilter.search.options;
 			}
 
-			if (searchFilter?.search?.bedsList?.length == 0) {
-				delete searchFilter.search.bedsList;
+			if (searchFilter?.search?.typeTransmission?.length == 0) {
+				delete searchFilter.search.typeTransmission;
 			}
 
 			await router.push(
@@ -326,13 +336,11 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<ExpandMoreIcon />
 						</Box>
 						<Box className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler}>
-							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Property type')} </span>
+							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Car type')} </span>
 							<ExpandMoreIcon />
 						</Box>
-						<Box className={`box ${openRooms ? 'on' : ''}`} onClick={roomStateChangeHandler}>
-							<span>
-								{searchFilter?.search?.roomsList ? `${searchFilter?.search?.roomsList[0]} rooms}` : t('Rooms')}
-							</span>
+						<Box className={`box ${openFuels ? 'on' : ''}`} onClick={fuelStateChangeHandler}>
+							<span>{searchFilter?.search?.typeFuel ? `${searchFilter?.search?.typeFuel[0]}` : t('Fuel')}</span>
 							<ExpandMoreIcon />
 						</Box>
 					</Stack>
@@ -372,12 +380,12 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						})}
 					</div>
 
-					<div className={`filter-rooms ${openRooms ? 'on' : ''}`} ref={roomsRef}>
-						{[1, 2, 3, 4, 5].map((room: number) => {
+					<div className={`filter-rooms ${openFuels ? 'on' : ''}`} ref={fuelsRef}>
+						{propertyFuels.map((fuel) => {
 							return (
-								<span onClick={() => propertyRoomSelectHandler(room)} key={room}>
-									{room} room{room > 1 ? 's' : ''}
-								</span>
+								<div onClick={() => propertyFuelSelectHandler(fuel)} key={fuel}>
+									<span>{fuel}</span>
+								</div>
 							);
 						})}
 					</div>
@@ -417,21 +425,23 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<div className={'middle'}>
 								<div className={'row-box'}>
 									<div className={'box'}>
-										<span>bedrooms</span>
+										<span>transmission</span>
 										<div className={'inside'}>
 											<div
-												className={`room ${!searchFilter?.search?.bedsList ? 'active' : ''}`}
-												onClick={() => propertyBedSelectHandler(0)}
+												className={`room ${!searchFilter?.search?.typeTransmission?.length ? 'active' : ''}`}
+												onClick={() => propertyTransmissionSelectHandler(null)}
 											>
 												Any
 											</div>
-											{[1, 2, 3, 4, 5].map((bed: number) => (
+											{Object.values(PropertyTransmission).map((transmission) => (
 												<div
-													className={`room ${searchFilter?.search?.bedsList?.includes(bed) ? 'active' : ''}`}
-													onClick={() => propertyBedSelectHandler(bed)}
-													key={bed}
+													className={`room ${
+														searchFilter?.search?.typeTransmission?.includes(transmission) ? 'active' : ''
+													}`}
+													onClick={() => propertyTransmissionSelectHandler(transmission)}
+													key={transmission}
 												>
-													{bed == 0 ? 'Any' : bed}
+													{transmission}
 												</div>
 											))}
 										</div>
@@ -495,11 +505,11 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 										</div>
 									</div>
 									<div className={'box'}>
-										<span>square meter</span>
+										<span>mileage</span>
 										<div className={'inside space-between align-center'}>
 											<FormControl sx={{ width: '122px' }}>
 												<Select
-													value={searchFilter?.search?.squaresRange?.start}
+													value={searchFilter?.search?.mileageRange?.start}
 													onChange={(e: any) => propertySquareHandler(e, 'start')}
 													displayEmpty
 													inputProps={{ 'aria-label': 'Without label' }}
@@ -508,7 +518,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 													{propertySquare.map((square: number) => (
 														<MenuItem
 															value={square}
-															disabled={(searchFilter?.search?.squaresRange?.end || 0) < square}
+															disabled={(searchFilter?.search?.mileageRange?.end || 0) < square}
 															key={square}
 														>
 															{square}
@@ -519,7 +529,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 											<div className={'minus-line'}></div>
 											<FormControl sx={{ width: '122px' }}>
 												<Select
-													value={searchFilter?.search?.squaresRange?.end}
+													value={searchFilter?.search?.mileageRange?.end}
 													onChange={(e: any) => propertySquareHandler(e, 'end')}
 													displayEmpty
 													inputProps={{ 'aria-label': 'Without label' }}
@@ -528,7 +538,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 													{propertySquare.map((square: number) => (
 														<MenuItem
 															value={square}
-															disabled={(searchFilter?.search?.squaresRange?.start || 0) > square}
+															disabled={(searchFilter?.search?.mileageRange?.start || 0) > square}
 															key={square}
 														>
 															{square}
@@ -567,9 +577,9 @@ HeaderFilter.defaultProps = {
 		page: 1,
 		limit: 9,
 		search: {
-			squaresRange: {
+			mileageRange: {
 				start: 0,
-				end: 500,
+				end: 200000,
 			},
 			pricesRange: {
 				start: 0,

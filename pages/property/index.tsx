@@ -180,9 +180,9 @@ PropertyList.defaultProps = {
 		sort: 'createdAt',
 		direction: 'DESC',
 		search: {
-			squaresRange: {
+			mileageRange: {
 				start: 0,
-				end: 500,
+				end: 200000,
 			},
 			pricesRange: {
 				start: 0,

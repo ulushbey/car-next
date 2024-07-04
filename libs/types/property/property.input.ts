@@ -37,10 +37,11 @@ interface PISearch {
 	locationList?: PropertyLocation[];
 	typeList?: PropertyType[];
 	typeFuel?: PropertyFuel[];
-	typeTransmission?: PropertyTransmission[];
+	typeTransmission?: PropertyTransmission[] | undefined;
 	options?: string[];
 	pricesRange?: Range;
 	periodsRange?: PeriodsRange;
+	mileageRange?: MileageRange;
 	text?: string;
 }
 
@@ -85,4 +86,9 @@ interface Range {
 interface PeriodsRange {
 	start: Date | number;
 	end: Date | number;
+}
+
+interface MileageRange {
+	start: number;
+	end: number;
 }
