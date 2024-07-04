@@ -90,15 +90,15 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/car.svg" alt="" />
-							<span>{property?.propertyType}</span>
+							<span>{property.propertyType}</span>
 						</div>
 						<div>
 							<img src="/img/icons/fuel.svg" alt="" />
-							<span>{property?.propertyFuel}Gybrid</span>
+							<span>{property.propertyFuel}</span>
 						</div>
 						<div>
 							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertyTransmission}manual</span>
+							<span>{property.propertyTransmission}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />

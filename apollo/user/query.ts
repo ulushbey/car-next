@@ -89,22 +89,32 @@ export const GET_PROPERTY = gql`
 			propertyType
 			propertyStatus
 			propertyLocation
+			propertyFuel
 			propertyAddress
+			propertyOption
+			propertyTransmission
 			propertyTitle
 			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
+			propertyCountry
+			propertyManufacture
+			propertyModel
+			propertyColor
+			propertyYear
+			propertyMileage
 			propertyViews
 			propertyLikes
+			propertyComments
+			propertyRank
+			propertyDrivenDistance
 			propertyImages
 			propertyDesc
 			propertyBarter
 			propertyRent
+			propertyAccident
 			memberId
 			soldAt
 			deletedAt
-			constructedAt
+			manufacturedAt
 			createdAt
 			updatedAt
 			memberData {
@@ -118,11 +128,17 @@ export const GET_PROPERTY = gql`
 				memberImage
 				memberAddress
 				memberDesc
-				memberWarnings
-				memberBlocks
+				memberProperties
+				memberArticles
+				memberFollowers
+				memberFollowings
 				memberPoints
 				memberLikes
 				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
 				deletedAt
 				createdAt
 				updatedAt
@@ -186,7 +202,20 @@ export const GET_PROPERTIES = gql`
 					deletedAt
 					createdAt
 					updatedAt
+					accessToken
 				}
+				propertyFuel
+				propertyOption
+				propertyTransmission
+				propertyCountry
+				propertyManufacture
+				propertyModel
+				propertyColor
+				propertyYear
+				propertyMileage
+				propertyDrivenDistance
+				propertyAccident
+				manufacturedAt
 				meLiked {
 					memberId
 					likeRefId
@@ -208,24 +237,61 @@ export const GET_AGENT_PROPERTIES = gql`
 				propertyType
 				propertyStatus
 				propertyLocation
+				propertyFuel
 				propertyAddress
+				propertyOption
+				propertyTransmission
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
+				propertyCountry
+				propertyManufacture
+				propertyModel
+				propertyColor
+				propertyYear
+				propertyMileage
 				propertyViews
 				propertyLikes
+				propertyComments
+				propertyRank
+				propertyDrivenDistance
 				propertyImages
 				propertyDesc
 				propertyBarter
 				propertyRent
+				propertyAccident
 				memberId
 				soldAt
 				deletedAt
-				constructedAt
+				manufacturedAt
 				createdAt
 				updatedAt
+				memberData {
+					_id
+					memberType
+					memberStatus
+					memberAuthType
+					memberPhone
+					memberNick
+					memberFullName
+					memberImage
+					memberAddress
+					memberDesc
+					memberProperties
+					memberArticles
+					memberFollowers
+					memberFollowings
+					memberPoints
+					memberLikes
+					memberViews
+					memberComments
+					memberRank
+					memberWarnings
+					memberBlocks
+					deletedAt
+					createdAt
+					updatedAt
+					accessToken
+				}
 			}
 			metaCounter {
 				total
@@ -242,53 +308,34 @@ export const GET_FAVORITES = gql`
 				propertyType
 				propertyStatus
 				propertyLocation
+				propertyFuel
 				propertyAddress
+				propertyOption
+				propertyTransmission
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
+				propertyCountry
+				propertyManufacture
+				propertyModel
+				propertyColor
+				propertyYear
+				propertyMileage
 				propertyViews
 				propertyLikes
 				propertyComments
 				propertyRank
+				propertyDrivenDistance
 				propertyImages
 				propertyDesc
 				propertyBarter
 				propertyRent
+				propertyAccident
 				memberId
 				soldAt
 				deletedAt
-				constructedAt
+				manufacturedAt
 				createdAt
 				updatedAt
-				memberData {
-					_id
-					memberType
-					memberStatus
-					memberAuthType
-					memberPhone
-					memberNick
-					memberFullName
-					memberImage
-					memberAddress
-					memberDesc
-					memberProperties
-					memberArticles
-					memberPoints
-					memberLikes
-					memberViews
-					memberComments
-					memberFollowings
-					memberFollowers
-					memberRank
-					memberWarnings
-					memberBlocks
-					deletedAt
-					createdAt
-					updatedAt
-					accessToken
-				}
 			}
 			metaCounter {
 				total
@@ -305,53 +352,34 @@ export const GET_VISITED = gql`
 				propertyType
 				propertyStatus
 				propertyLocation
+				propertyFuel
 				propertyAddress
+				propertyOption
+				propertyTransmission
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
+				propertyCountry
+				propertyManufacture
+				propertyModel
+				propertyColor
+				propertyYear
+				propertyMileage
 				propertyViews
 				propertyLikes
 				propertyComments
 				propertyRank
+				propertyDrivenDistance
 				propertyImages
 				propertyDesc
 				propertyBarter
 				propertyRent
+				propertyAccident
 				memberId
 				soldAt
 				deletedAt
-				constructedAt
+				manufacturedAt
 				createdAt
 				updatedAt
-				memberData {
-					_id
-					memberType
-					memberStatus
-					memberAuthType
-					memberPhone
-					memberNick
-					memberFullName
-					memberImage
-					memberAddress
-					memberDesc
-					memberProperties
-					memberArticles
-					memberPoints
-					memberLikes
-					memberViews
-					memberComments
-					memberFollowings
-					memberFollowers
-					memberRank
-					memberWarnings
-					memberBlocks
-					deletedAt
-					createdAt
-					updatedAt
-					accessToken
-				}
 			}
 			metaCounter {
 				total
