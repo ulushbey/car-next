@@ -336,11 +336,11 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<ExpandMoreIcon />
 						</Box>
 						<Box className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler}>
-							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Car type')} </span>
+							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Car type')}</span>
 							<ExpandMoreIcon />
 						</Box>
 						<Box className={`box ${openFuels ? 'on' : ''}`} onClick={fuelStateChangeHandler}>
-							<span>{searchFilter?.search?.typeFuel ? `${searchFilter?.search?.typeFuel[0]}` : t('Fuel')}</span>
+							<span>{searchFilter?.search?.typeFuel ? `${searchFilter?.search?.typeFuel[0]}` : t('Fuels')}</span>
 							<ExpandMoreIcon />
 						</Box>
 					</Stack>
@@ -405,7 +405,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 								<CloseIcon />
 							</div>
 							<div className={'top'}>
-								<span>Find your home</span>
+								<span>Find your car</span>
 								<div className={'search-input-box'}>
 									<img src="/img/icons/search.svg" alt="" />
 									<input
