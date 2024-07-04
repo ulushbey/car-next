@@ -13,7 +13,7 @@ import {
 	IconButton,
 } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { PropertyLocation, PropertyType } from '../../enums/property.enum';
+import { PropertyFuel, PropertyLocation, PropertyTransmission, PropertyType } from '../../enums/property.enum';
 import { PropertiesInquiry } from '../../types/property/property.input';
 import { useRouter } from 'next/router';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
@@ -63,8 +63,8 @@ const Filter = (props: FilterType) => {
 			router.push(`/property?input=${queryParams}`, `/property?input=${queryParams}`, { scroll: false }).then();
 		}
 
-		if (searchFilter?.search?.roomsList?.length == 0) {
-			delete searchFilter.search.roomsList;
+		if (searchFilter?.search?.typeFuel?.length == 0) {
+			delete searchFilter.search.typeFuel;
 			router.push(`/property?input=${queryParams}`, `/property?input=${queryParams}`, { scroll: false }).then();
 		}
 
@@ -73,8 +73,8 @@ const Filter = (props: FilterType) => {
 			router.push(`/property?input=${queryParams}`, `/property?input=${queryParams}`, { scroll: false }).then();
 		}
 
-		if (searchFilter?.search?.bedsList?.length == 0) {
-			delete searchFilter.search.bedsList;
+		if (searchFilter?.search?.typeTransmission?.length == 0) {
+			delete searchFilter.search.typeTransmission;
 			router.push(`/property?input=${queryParams}`, `/property?input=${queryParams}`, { scroll: false }).then();
 		}
 
@@ -180,64 +180,40 @@ const Filter = (props: FilterType) => {
 		[searchFilter],
 	);
 
-	const propertyRoomSelectHandler = useCallback(
-		async (number: Number) => {
+	const propertyFuelSelectHandler = useCallback(
+		async (typeFuel: PropertyFuel | null) => {
 			try {
-				if (number != 0) {
-					if (searchFilter?.search?.roomsList?.includes(number)) {
-						await router.push(
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: {
-									...searchFilter.search,
-									roomsList: searchFilter?.search?.roomsList?.filter((item: Number) => item !== number),
-								},
-							})}`,
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: {
-									...searchFilter.search,
-									roomsList: searchFilter?.search?.roomsList?.filter((item: Number) => item !== number),
-								},
-							})}`,
-							{ scroll: false },
-						);
+				let newSearchFilter = { ...searchFilter };
+
+				if (typeFuel !== null) {
+					if (searchFilter?.search?.typeFuel?.includes(typeFuel)) {
+						newSearchFilter = {
+							...searchFilter,
+							search: {
+								...searchFilter.search,
+								typeFuel: searchFilter?.search?.typeFuel?.filter((item: PropertyFuel) => item !== typeFuel),
+							},
+						};
 					} else {
-						await router.push(
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: { ...searchFilter.search, roomsList: [...(searchFilter?.search?.roomsList || []), number] },
-							})}`,
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: { ...searchFilter.search, roomsList: [...(searchFilter?.search?.roomsList || []), number] },
-							})}`,
-							{ scroll: false },
-						);
+						newSearchFilter = {
+							...searchFilter,
+							search: {
+								...searchFilter.search,
+								typeFuel: [...(searchFilter?.search?.typeFuel || []), typeFuel],
+							},
+						};
 					}
 				} else {
-					delete searchFilter?.search.roomsList;
-					setSearchFilter({ ...searchFilter });
-					await router.push(
-						`/property?input=${JSON.stringify({
-							...searchFilter,
-							search: {
-								...searchFilter.search,
-							},
-						})}`,
-						`/property?input=${JSON.stringify({
-							...searchFilter,
-							search: {
-								...searchFilter.search,
-							},
-						})}`,
-						{ scroll: false },
-					);
+					delete newSearchFilter.search.typeFuel;
 				}
 
-				console.log('propertyRoomSelectHandler:', number);
+				setSearchFilter(newSearchFilter);
+
+				await router.push(`/property?input=${JSON.stringify(newSearchFilter)}`, undefined, { scroll: false });
+
+				console.log('propertyFuelSelectHandler:', typeFuel);
 			} catch (err: any) {
-				console.log('ERROR, propertyRoomSelectHandler:', err);
+				console.log('ERROR, propertyFuelSelectHandler:', err);
 			}
 		},
 		[searchFilter],
@@ -288,64 +264,42 @@ const Filter = (props: FilterType) => {
 		[searchFilter],
 	);
 
-	const propertyBedSelectHandler = useCallback(
-		async (number: Number) => {
+	const propertyTransmissionSelectHandler = useCallback(
+		async (typeTransmission: PropertyTransmission | null) => {
 			try {
-				if (number != 0) {
-					if (searchFilter?.search?.bedsList?.includes(number)) {
-						await router.push(
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: {
-									...searchFilter.search,
-									bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
-								},
-							})}`,
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: {
-									...searchFilter.search,
-									bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
-								},
-							})}`,
-							{ scroll: false },
-						);
+				let newSearchFilter = { ...searchFilter };
+
+				if (typeTransmission !== null) {
+					if (searchFilter?.search?.typeTransmission?.includes(typeTransmission)) {
+						newSearchFilter = {
+							...searchFilter,
+							search: {
+								...searchFilter.search,
+								typeTransmission: searchFilter?.search?.typeTransmission?.filter(
+									(item: PropertyTransmission) => item !== typeTransmission,
+								),
+							},
+						};
 					} else {
-						await router.push(
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
-							})}`,
-							`/property?input=${JSON.stringify({
-								...searchFilter,
-								search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
-							})}`,
-							{ scroll: false },
-						);
+						newSearchFilter = {
+							...searchFilter,
+							search: {
+								...searchFilter.search,
+								typeTransmission: [...(searchFilter?.search?.typeTransmission || []), typeTransmission],
+							},
+						};
 					}
 				} else {
-					delete searchFilter?.search.bedsList;
-					setSearchFilter({ ...searchFilter });
-					await router.push(
-						`/property?input=${JSON.stringify({
-							...searchFilter,
-							search: {
-								...searchFilter.search,
-							},
-						})}`,
-						`/property?input=${JSON.stringify({
-							...searchFilter,
-							search: {
-								...searchFilter.search,
-							},
-						})}`,
-						{ scroll: false },
-					);
+					delete newSearchFilter.search.typeTransmission;
 				}
 
-				console.log('propertyBedSelectHandler:', number);
+				setSearchFilter(newSearchFilter);
+
+				await router.push(`/property?input=${JSON.stringify(newSearchFilter)}`, undefined, { scroll: false });
+
+				console.log('propertyRoomSelectHandler:', typeTransmission);
 			} catch (err: any) {
-				console.log('ERROR, propertyBedSelectHandler:', err);
+				console.log('ERROR, propertyRoomSelectHandler:', err);
 			}
 		},
 		[searchFilter],
@@ -458,7 +412,7 @@ const Filter = (props: FilterType) => {
 		return (
 			<Stack className={'filter-main'}>
 				<Stack className={'find-your-home'} mb={'40px'}>
-					<Typography className={'title-main'}>Find Your Home</Typography>
+					<Typography className={'title-main'}>Find Your Car</Typography>
 					<Stack className={'input-box'}>
 						<OutlinedInput
 							value={searchText}
@@ -550,131 +504,132 @@ const Filter = (props: FilterType) => {
 					))}
 				</Stack>
 				<Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Rooms</Typography>
+					<Typography className={'title'}>Car fuel</Typography>
 					<Stack className="button-group">
 						<Button
 							sx={{
 								borderRadius: '12px 0 0 12px',
-								border: !searchFilter?.search?.roomsList ? '2px solid #181A20' : '1px solid #b9b9b9',
+								border: !searchFilter?.search?.typeFuel ? '2px solid #181A20' : '1px solid #b9b9b9',
 							}}
-							onClick={() => propertyRoomSelectHandler(0)}
+							onClick={() => propertyFuelSelectHandler(null)}
 						>
 							Any
 						</Button>
 						<Button
 							sx={{
 								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(1) ? undefined : 'none',
+								border: searchFilter?.search?.typeFuel?.includes(PropertyFuel.DIESEL)
+									? '2px solid #181A20'
+									: '1px solid #b9b9b9',
+								borderLeft: searchFilter?.search?.typeFuel?.includes(PropertyFuel.DIESEL) ? undefined : 'none',
 							}}
-							onClick={() => propertyRoomSelectHandler(1)}
+							onClick={() => propertyFuelSelectHandler(PropertyFuel.DIESEL)}
 						>
-							1
+							Diesel
 						</Button>
 						<Button
 							sx={{
 								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(2) ? undefined : 'none',
+								border: searchFilter?.search?.typeFuel?.includes(PropertyFuel.ELECTRICITY)
+									? '2px solid #181A20'
+									: '1px solid #b9b9b9',
+								borderLeft: searchFilter?.search?.typeFuel?.includes(PropertyFuel.ELECTRICITY) ? undefined : 'none',
 							}}
-							onClick={() => propertyRoomSelectHandler(2)}
+							onClick={() => propertyFuelSelectHandler(PropertyFuel.ELECTRICITY)}
 						>
-							2
+							Suv
 						</Button>
 						<Button
 							sx={{
 								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(3) ? undefined : 'none',
+								border: searchFilter?.search?.typeFuel?.includes(PropertyFuel.GASOLINE)
+									? '2px solid #181A20'
+									: '1px solid #b9b9b9',
+								borderLeft: searchFilter?.search?.typeFuel?.includes(PropertyFuel.GASOLINE) ? undefined : 'none',
 							}}
-							onClick={() => propertyRoomSelectHandler(3)}
+							onClick={() => propertyFuelSelectHandler(PropertyFuel.GASOLINE)}
 						>
-							3
+							Gasoline
 						</Button>
 						<Button
 							sx={{
 								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(4) ? undefined : 'none',
-								borderRight: searchFilter?.search?.roomsList?.includes(4) ? undefined : 'none',
+								border: searchFilter?.search?.typeFuel?.includes(PropertyFuel.HYBRID)
+									? '2px solid #181A20'
+									: '1px solid #b9b9b9',
+								borderLeft: searchFilter?.search?.typeFuel?.includes(PropertyFuel.HYBRID) ? undefined : 'none',
+								borderRight: searchFilter?.search?.typeFuel?.includes(PropertyFuel.HYBRID) ? undefined : 'none',
 							}}
-							onClick={() => propertyRoomSelectHandler(4)}
+							onClick={() => propertyFuelSelectHandler(PropertyFuel.HYBRID)}
 						>
-							4
+							Hybrid
 						</Button>
 						<Button
 							sx={{
 								borderRadius: '0 12px 12px 0',
-								border: searchFilter?.search?.roomsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
+								border: searchFilter?.search?.typeFuel?.includes(PropertyFuel.LPG)
+									? '2px solid #181A20'
+									: '1px solid #b9b9b9',
 							}}
-							onClick={() => propertyRoomSelectHandler(5)}
+							onClick={() => propertyFuelSelectHandler(PropertyFuel.LPG)}
 						>
-							5+
+							Lpg
 						</Button>
 					</Stack>
 				</Stack>
 				<Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Bedrooms</Typography>
+					<Typography className={'title'}> Car transmission</Typography>
 					<Stack className="button-group">
 						<Button
 							sx={{
 								borderRadius: '12px 0 0 12px',
-								border: !searchFilter?.search?.bedsList ? '2px solid #181A20' : '1px solid #b9b9b9',
+								border: !searchFilter?.search?.typeTransmission ? '2px solid #181A20' : '1px solid #b9b9b9',
 							}}
-							onClick={() => propertyBedSelectHandler(0)}
+							onClick={() => propertyTransmissionSelectHandler(null)}
 						>
 							Any
 						</Button>
 						<Button
 							sx={{
 								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(1) ? undefined : 'none',
+								border: searchFilter?.search?.typeTransmission?.includes(PropertyTransmission.AUTO)
+									? '2px solid #181A20'
+									: '1px solid #b9b9b9',
+								borderLeft: searchFilter?.search?.typeTransmission?.includes(PropertyTransmission.AUTO)
+									? undefined
+									: 'none',
 							}}
-							onClick={() => propertyBedSelectHandler(1)}
+							onClick={() => propertyTransmissionSelectHandler(PropertyTransmission.AUTO)}
 						>
-							1
+							AUTO
 						</Button>
 						<Button
 							sx={{
 								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(2) ? undefined : 'none',
+								border: searchFilter?.search?.typeTransmission?.includes(PropertyTransmission.MANUAL)
+									? '2px solid #181A20'
+									: '1px solid #b9b9b9',
+								borderLeft: searchFilter?.search?.typeTransmission?.includes(PropertyTransmission.MANUAL)
+									? undefined
+									: 'none',
 							}}
-							onClick={() => propertyBedSelectHandler(2)}
+							onClick={() => propertyTransmissionSelectHandler(PropertyTransmission.MANUAL)}
 						>
-							2
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(3) ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(3)}
-						>
-							3
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(4) ? undefined : 'none',
-								// borderRight: false ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(4)}
-						>
-							4
+							MANUAL
 						</Button>
 						<Button
 							sx={{
 								borderRadius: '0 12px 12px 0',
-								border: searchFilter?.search?.bedsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(5) ? undefined : 'none',
+								border: searchFilter?.search?.typeTransmission?.includes(PropertyTransmission.SEMI_AUTO)
+									? '2px solid #181A20'
+									: '1px solid #b9b9b9',
+								borderLeft: searchFilter?.search?.typeTransmission?.includes(PropertyTransmission.SEMI_AUTO)
+									? undefined
+									: 'none',
 							}}
-							onClick={() => propertyBedSelectHandler(5)}
+							onClick={() => propertyTransmissionSelectHandler(PropertyTransmission.SEMI_AUTO)}
 						>
-							5+
+							SEMI AUTO
 						</Button>
 					</Stack>
 				</Stack>
