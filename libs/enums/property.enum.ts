@@ -42,6 +42,7 @@ export enum PropertyOption {
 	HEATED_SEAT = 'HEATED_SEAT',
 	VENTILATED_SEAT = 'VENTILATED_SEAT',
 	LEATHER_SEAT = 'LEATHER_SEAT',
+	propertyOption = 'propertyOption',
 }
 
 export enum PropertyTransmission {
