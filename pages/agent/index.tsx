@@ -158,8 +158,8 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 									{filterSortName}
 								</Button>
 								<Menu anchorEl={anchorEl} open={sortingOpen} onClose={sortingCloseHandler} sx={{ paddingTop: '5px' }}>
-									<MenuItem onClick={sortingHandler} id={'recent'} disableRipple>
-										Recent
+									<MenuItem onClick={sortingHandler} id={'last'} disableRipple>
+										last
 									</MenuItem>
 									<MenuItem onClick={sortingHandler} id={'old'} disableRipple>
 										Oldest
