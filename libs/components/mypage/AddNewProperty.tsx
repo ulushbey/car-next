@@ -2,14 +2,41 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { PropertyLocation, PropertyType } from '../../enums/property.enum';
-import { REACT_APP_API_URL, propertySquare } from '../../config';
+import styled from 'styled-components';
+import {
+	PropertyFuel,
+	PropertyOption,
+	PropertyLocation,
+	PropertyTransmission,
+	PropertyType,
+} from '../../enums/property.enum';
+import { REACT_APP_API_URL } from '../../config';
 import { PropertyInput } from '../../types/property/property.input';
 import axios from 'axios';
 import { getJwtToken } from '../../auth';
-import { sweetMixinErrorAlert } from '../../sweetAlert';
-import { useReactiveVar } from '@apollo/client';
+import { sweetErrorHandling, sweetMixinErrorAlert, sweetMixinSuccessAlert } from '../../sweetAlert';
+import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
+import { CREATE_PROPERTY, UPDATE_PROPERTY } from '../../../apollo/user/mutation';
+import { GET_PROPERTY } from '../../../apollo/user/query';
+
+const CheckboxContainer = styled.div`
+	display: flex;
+	align-items: center;
+	margin-bottom: 8px;
+`;
+
+const StyledCheckbox = styled.input`
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	cursor: pointer;
+`;
+
+const StyledLabel = styled.label`
+	font-size: 18px;
+	cursor: pointer;
+`;
 
 const AddProperty = ({ initialValues, ...props }: any) => {
 	const device = useDeviceDetect();
@@ -22,8 +49,18 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 	const user = useReactiveVar(userVar);
 
 	/** APOLLO REQUESTS **/
-	let getPropertyData: any, getPropertyLoading: any;
+	const [createProperty] = useMutation(CREATE_PROPERTY);
+	const [updateProperty] = useMutation(UPDATE_PROPERTY);
 
+	const {
+		loading: getPropertyLoading,
+		data: getPropertyData,
+		error: getPropertyError,
+		refetch: getPropertyRefetch,
+	} = useQuery(GET_PROPERTY, {
+		fetchPolicy: 'network-only',
+		variables: { input: router.query.propertyId },
+	});
 	/** LIFECYCLES **/
 	useEffect(() => {
 		setInsertPropertyData({
@@ -33,11 +70,18 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 			propertyType: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyType : '',
 			propertyLocation: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyLocation : '',
 			propertyAddress: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyAddress : '',
+			propertyCountry: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyCountry : '',
+			propertyManufacture: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyManufacture : '',
+			propertyModel: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyModel : '',
+			propertyColor: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyColor : '',
+			propertyMileage: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyMileage : 0,
+			propertyDrivenDistance: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyDrivenDistance : 0,
+			propertyYear: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyYear : 0,
+			propertyOption: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyOption : [],
 			propertyBarter: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyBarter : false,
 			propertyRent: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyRent : false,
-			propertyRooms: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyRooms : 0,
-			propertyBeds: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyBeds : 0,
-			propertySquare: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertySquare : 0,
+			propertyFuel: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyFuel : '',
+			propertyTransmission: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyTransmission : '',
 			propertyDesc: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyDesc : '',
 			propertyImages: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyImages : [],
 		});
@@ -104,20 +148,64 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 			insertPropertyData.propertyLocation === '' || // @ts-ignore
 			insertPropertyData.propertyAddress === '' || // @ts-ignore
 			insertPropertyData.propertyBarter === '' || // @ts-ignore
-			insertPropertyData.propertyRent === '' ||
-			insertPropertyData.propertyRooms === 0 ||
-			insertPropertyData.propertyBeds === 0 ||
-			insertPropertyData.propertySquare === 0 ||
-			insertPropertyData.propertyDesc === '' ||
+			insertPropertyData.propertyRent === '' || // @ts-ignore
+			insertPropertyData.propertyFuel === '' || // @ts-ignore
+			insertPropertyData.propertyCountry === '' || // @ts-ignore
+			insertPropertyData.propertyTransmission === '' || // @ts-ignore
+			insertPropertyData.propertyManufacture === '' || // @ts-ignore
+			insertPropertyData.propertyModel === '' || // @ts-ignore
+			insertPropertyData.propertyColor === '' || // @ts-ignore
+			insertPropertyData.propertyYear === 0 || // @ts-ignore
+			insertPropertyData.propertyMileage === 0 || // @ts-ignore
+			insertPropertyData.propertyOption.length === 0 || // @ts-ignore
+			insertPropertyData.propertyDrivenDistance === 0 || // @ts-ignore
+			insertPropertyData.propertyDesc === '' || // @ts-ignore
 			insertPropertyData.propertyImages.length === 0
 		) {
 			return true;
 		}
 	};
 
-	const insertPropertyHandler = useCallback(async () => {}, [insertPropertyData]);
+	const insertPropertyHandler = useCallback(async () => {
+		try {
+			const result = await createProperty({
+				variables: {
+					input: insertPropertyData,
+				},
+			});
+			await sweetMixinSuccessAlert('This car has been created successfully.');
+			await router.push({
+				pathname: '/mypage',
+				query: {
+					category: 'myProperties',
+				},
+			});
+		} catch (err: any) {
+			sweetErrorHandling(err).then();
+		}
+	}, [insertPropertyData]);
 
-	const updatePropertyHandler = useCallback(async () => {}, [insertPropertyData]);
+	const updatePropertyHandler = useCallback(async () => {
+		try {
+			//@ts-ignore
+			insertPropertyData._id = getPropertyData?.getProperty?._id;
+			const result = await updateProperty({
+				variables: {
+					input: insertPropertyData,
+				},
+			});
+
+			await sweetMixinSuccessAlert('This car has been updated successfully.');
+			await router.push({
+				pathname: '/mypage',
+				query: {
+					category: 'myProperties',
+				},
+			});
+		} catch (err: any) {
+			sweetErrorHandling(err).then();
+		}
+	}, [insertPropertyData]);
 
 	if (user?.memberType !== 'AGENT') {
 		router.back();
@@ -125,13 +213,22 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 
 	console.log('+insertPropertyData', insertPropertyData);
 
+	const propertyOption = insertPropertyData.propertyOption || [];
+
+	const handleCheckboxChange = (option: PropertyOption) => {
+		const options = insertPropertyData.propertyOption.includes(option)
+			? insertPropertyData.propertyOption.filter((opt) => opt !== option)
+			: [...insertPropertyData.propertyOption, option];
+		setInsertPropertyData({ ...insertPropertyData, propertyOption: options });
+	};
+
 	if (device === 'mobile') {
 		return <div>ADD NEW PROPERTY MOBILE PAGE</div>;
 	} else {
 		return (
 			<div id="add-property-page">
 				<Stack className="main-title-box">
-					<Typography className="main-title">Add New Property</Typography>
+					<Typography className="main-title">Add New Car</Typography>
 					<Typography className="sub-title">We are glad to see you again!</Typography>
 				</Stack>
 
@@ -155,7 +252,7 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 								<Stack className="price-year-after-price">
 									<Typography className="title">Price</Typography>
 									<input
-										type="text"
+										type="number"
 										className="description-input"
 										placeholder={'Price'}
 										value={insertPropertyData.propertyPrice}
@@ -165,7 +262,19 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									/>
 								</Stack>
 								<Stack className="price-year-after-price">
-									<Typography className="title">Select Type</Typography>
+									<Typography className="title">Car model</Typography>
+									<input
+										type="text"
+										className="description-input"
+										placeholder={'Model'}
+										value={insertPropertyData.propertyModel}
+										onChange={({ target: { value } }) =>
+											setInsertPropertyData({ ...insertPropertyData, propertyModel: value })
+										}
+									/>
+								</Stack>
+								<Stack className="price-year-after-price">
+									<Typography className="title">Select Car Type</Typography>
 									<select
 										className={'select-description'}
 										defaultValue={insertPropertyData.propertyType || 'select'}
@@ -218,6 +327,18 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
 								</Stack>
 								<Stack className="price-year-after-price">
+									<Typography className="title">Car country</Typography>
+									<input
+										type="text"
+										className="description-input"
+										placeholder={'country'}
+										value={insertPropertyData.propertyCountry}
+										onChange={({ target: { value } }) =>
+											setInsertPropertyData({ ...insertPropertyData, propertyCountry: value })
+										}
+									/>
+								</Stack>
+								<Stack className="price-year-after-price">
 									<Typography className="title">Address</Typography>
 									<input
 										type="text"
@@ -252,6 +373,30 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
 								</Stack>
 								<Stack className="price-year-after-price">
+									<Typography className="title">Car manufacture</Typography>
+									<input
+										type="text"
+										className="description-input"
+										placeholder={'Company'}
+										value={insertPropertyData.propertyManufacture}
+										onChange={({ target: { value } }) =>
+											setInsertPropertyData({ ...insertPropertyData, propertyManufacture: value })
+										}
+									/>
+								</Stack>
+								<Stack className="price-year-after-price">
+									<Typography className="title">Produced Year</Typography>
+									<input
+										type="number"
+										className="description-input"
+										placeholder={'Year'}
+										value={insertPropertyData.propertyYear}
+										onChange={({ target: { value } }) =>
+											setInsertPropertyData({ ...insertPropertyData, propertyYear: parseInt(value) })
+										}
+									/>
+								</Stack>
+								<Stack className="price-year-after-price">
 									<Typography className="title">Rent</Typography>
 									<select
 										className={'select-description'}
@@ -274,70 +419,134 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 
 							<Stack className="config-row">
 								<Stack className="price-year-after-price">
-									<Typography className="title">Rooms</Typography>
+									<Typography className="title">Mileage</Typography>
+									<input
+										type="number"
+										className="description-input"
+										placeholder={'Mile'}
+										value={insertPropertyData.propertyMileage}
+										onChange={({ target: { value } }) =>
+											setInsertPropertyData({ ...insertPropertyData, propertyMileage: parseInt(value) })
+										}
+									/>
+								</Stack>
+								<Stack className="price-year-after-price">
+									<Typography className="title">Select Car Type</Typography>
 									<select
 										className={'select-description'}
-										value={insertPropertyData.propertyRooms || 'select'}
-										defaultValue={insertPropertyData.propertyRooms || 'select'}
+										defaultValue={insertPropertyData.propertyType || 'select'}
+										value={insertPropertyData.propertyType || 'select'}
 										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyRooms: parseInt(value) })
+											// @ts-ignore
+											setInsertPropertyData({ ...insertPropertyData, propertyType: value })
 										}
 									>
-										<option disabled={true} selected={true} value={'select'}>
-											Select
-										</option>
-										{[1, 2, 3, 4, 5].map((room: number) => (
-											<option value={`${room}`}>{room}</option>
-										))}
+										<>
+											<option selected={true} disabled={true} value={'select'}>
+												Select
+											</option>
+											{propertyType.map((type: any) => (
+												<option value={`${type}`} key={type}>
+													{type}
+												</option>
+											))}
+										</>
 									</select>
 									<div className={'divider'}></div>
 									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
 								</Stack>
 								<Stack className="price-year-after-price">
-									<Typography className="title">Bed</Typography>
-									<select
-										className={'select-description'}
-										value={insertPropertyData.propertyBeds || 'select'}
-										defaultValue={insertPropertyData.propertyBeds || 'select'}
+									<Typography className="title">Car color</Typography>
+									<input
+										type="text"
+										className="description-input"
+										placeholder={'Color'}
+										value={insertPropertyData.propertyColor}
 										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyBeds: parseInt(value) })
+											setInsertPropertyData({ ...insertPropertyData, propertyColor: value })
 										}
-									>
-										<option disabled={true} selected={true} value={'select'}>
-											Select
-										</option>
-										{[1, 2, 3, 4, 5].map((bed: number) => (
-											<option value={`${bed}`}>{bed}</option>
-										))}
-									</select>
-									<div className={'divider'}></div>
-									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
+									/>
 								</Stack>
 								<Stack className="price-year-after-price">
-									<Typography className="title">Square</Typography>
+									<Typography className="title">Car Transmission</Typography>
 									<select
-										className={'select-description'}
-										value={insertPropertyData.propertySquare || 'select'}
-										defaultValue={insertPropertyData.propertySquare || 'select'}
+										className="select-description"
+										value={insertPropertyData.propertyTransmission || 'select'}
+										defaultValue={insertPropertyData.propertyTransmission || 'select'}
 										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertySquare: parseInt(value) })
+											setInsertPropertyData({
+												...insertPropertyData,
+												propertyTransmission: value as PropertyTransmission,
+											})
 										}
 									>
-										<option disabled={true} selected={true} value={'select'}>
+										<option disabled selected value="select">
 											Select
 										</option>
-										{propertySquare.map((square: number) => {
-											if (square !== 0) {
-												return <option value={`${square}`}>{square}</option>;
-											}
-										})}
+										{Object.values(PropertyTransmission).map((trans) => (
+											<option key={trans} value={trans}>
+												{trans}
+											</option>
+										))}
 									</select>
-									<div className={'divider'}></div>
-									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
+									<div className="divider"></div>
+									<img src="/img/icons/Vector.svg" className="arrow-down" />
 								</Stack>
 							</Stack>
+							<Stack className="config-row">
+								<Stack className="price-year-after-price">
+									<Typography className="title">Fuel Type</Typography>
+									<select
+										className={'select-description'}
+										defaultValue={insertPropertyData.propertyFuel || 'select'}
+										value={insertPropertyData.propertyFuel || 'select'}
+										onChange={({ target: { value } }) =>
+											// @ts-ignore
+											setInsertPropertyData({ ...insertPropertyData, propertyFuel: value as PropertyFuel })
+										}
+									>
+										<>
+											<option disabled selected value="select">
+												Select
+											</option>
+											{Object.values(PropertyFuel).map((fuel) => (
+												<option key={fuel} value={fuel}>
+													{fuel}
+												</option>
+											))}
+										</>
+									</select>
+									<div className={'divider'}></div>
+									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
+								</Stack>
+								<Stack className="price-year-after-price">
+									<Typography className="title">Driven Distance</Typography>
+									<input
+										type="number"
+										className="description-input"
+										placeholder={'Mile'}
+										value={insertPropertyData.propertyDrivenDistance}
+										onChange={({ target: { value } }) =>
+											setInsertPropertyData({ ...insertPropertyData, propertyDrivenDistance: parseInt(value) })
+										}
+									/>
+								</Stack>
+							</Stack>
+							<Stack className="config-column">
+								<Typography className="title">Car Options</Typography>
+								{Object.values(PropertyOption).map((option) => (
+									<CheckboxContainer key={option}>
+										<StyledCheckbox
+											type="checkbox"
+											checked={propertyOption.includes(option)}
+											onChange={() => handleCheckboxChange(option)}
+										/>
+										<StyledLabel>{option}</StyledLabel>
+									</CheckboxContainer>
+								))}
+							</Stack>
 
-							<Typography className="property-title">Property Description</Typography>
+							<Typography className="property-title">Car Description</Typography>
 							<Stack className="config-column">
 								<Typography className="title">Description</Typography>
 								<textarea
@@ -352,7 +561,7 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 							</Stack>
 						</Stack>
 
-						<Typography className="upload-title">Upload photos of your property</Typography>
+						<Typography className="upload-title">Upload photos of your car</Typography>
 						<Stack className="images-box">
 							<Stack className="upload-box">
 								<svg xmlns="http://www.w3.org/2000/svg" width="121" height="120" viewBox="0 0 121 120" fill="none">
@@ -469,9 +678,16 @@ AddProperty.defaultProps = {
 		propertyAddress: '',
 		propertyBarter: false,
 		propertyRent: false,
-		propertyRooms: 0,
-		propertyBeds: 0,
-		propertySquare: 0,
+		propertyTransmission: '',
+		propertyFuel: '',
+		propertyCountry: '',
+		propertyManufacture: '',
+		propertyDrivenDistance: 0,
+		propertyModel: '',
+		propertyColor: '',
+		propertyMileage: 0,
+		propertyYear: 0,
+		propertyOption: [],
 		propertyDesc: '',
 		propertyImages: [],
 	},
