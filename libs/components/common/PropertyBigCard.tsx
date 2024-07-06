@@ -51,15 +51,15 @@ const PropertyBigCard = (props: PropertyBigCardProps) => {
 					<p className={'desc'}>{property?.propertyAddress}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
+							<img src="/img/icons/car.svg" alt="" />
 							<span>{property?.propertyType}</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
+							<img src="/img/icons/fuel.svg" alt="" />
 							<span>{property?.propertyFuel}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
+							<img src="/img/icons/expand.png" alt="" />
 							<span>{property?.propertyTransmission}</span>
 						</div>
 					</div>
@@ -76,7 +76,7 @@ const PropertyBigCard = (props: PropertyBigCardProps) => {
 							<Typography className="view-cnt">{property?.propertyViews}</Typography>
 							<IconButton
 								color={'default'}
-								onClick={(e) => {
+								onClick={(e: any) => {
 									e.stopPropagation();
 								}}
 							>

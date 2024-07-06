@@ -295,7 +295,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 										</svg>
 										<Typography className={'date'}>{moment().diff(property?.createdAt, 'days')} days ago</Typography>
 									</Stack>
-									<Stack className={'bottom-box'} style={{ alignItems: 'spaceAround' }}>
+									<Stack className={'bottom-box'}>
 										<Stack className="option">
 											<img src="/img/icons/car.svg" alt="" style={{ gap: '1em' }} />
 											<Typography>{property?.propertyType}</Typography>

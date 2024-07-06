@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { Height } from '@mui/icons-material';
 
 const withLayoutBasic = (Component: any) => {
 	return (props: any) => {
@@ -29,50 +30,54 @@ const withLayoutBasic = (Component: any) => {
 
 			switch (router.pathname) {
 				case '/property':
-					title = 'Property Search';
+					title = 'Car Search';
 					desc = 'We are glad to see you again!';
-					bgImage = '/img/banner/properties.png';
+					bgImage = '/img/banner/banner.jpg';
+					// bgImage = '/img/banner/car/single-2.jpg';
+					// bgImage = '/img/banner/car/05.jpg';
+					// bgImage = '/img/banner/car/04.jpg';
+					// bgImage = '/img/banner/car/07.jpg';
 					break;
 				case '/agent':
 					title = 'Agents';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/agents.webp';
+					desc = 'Car / For Rent and Sale';
+					bgImage = '/img/banner/car/04.jpg';
 					break;
 				case '/agent/detail':
 					title = 'Agent Page';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header2.svg';
+					desc = 'Car / For Rent and Sale';
+					bgImage = '/img/banner/car/04.jpg';
 					break;
 				case '/mypage':
 					title = 'my page';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header1.svg';
+					desc = 'Car / For Rent and Sale';
+					bgImage = '/img/banner/car/06.jpg';
 					break;
 				case '/community':
 					title = 'Community';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header2.svg';
+					desc = 'Car / For Rent and Sale';
+					bgImage = '/img/banner/car/06.jpg';
 					break;
 				case '/community/detail':
 					title = 'Community Detail';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header2.svg';
+					desc = 'Car / For Rent and Sale';
+					bgImage = '/img/banner/car/06.jpg';
 					break;
 				case '/cs':
 					title = 'CS';
 					desc = 'We are glad to see you again!';
-					bgImage = '/img/banner/header2.svg';
+					bgImage = '/img/banner/banner.jpg';
 					break;
 				case '/account/join':
 					title = 'Login/Signup';
 					desc = 'Authentication Process';
-					bgImage = '/img/banner/header2.svg';
+					bgImage = '/img/banner/banner.jpg';
 					setAuthHeader(true);
 					break;
 				case '/member':
 					title = 'Member Page';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header1.svg';
+					desc = 'Car / For Rent and Sale';
+					bgImage = '/img/banner/banner.jpg';
 					break;
 				default:
 					break;
@@ -93,8 +98,8 @@ const withLayoutBasic = (Component: any) => {
 			return (
 				<>
 					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
+						<title>Car</title>
+						<meta name={'title'} content={`Car`} />
 					</Head>
 					<Stack id="mobile-wrap">
 						<Stack id={'top'}>
@@ -115,8 +120,8 @@ const withLayoutBasic = (Component: any) => {
 			return (
 				<>
 					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
+						<title>Car</title>
+						<meta name={'title'} content={`Car`} />
 					</Head>
 					<Stack id="pc-wrap">
 						<Stack id={'top'}>
@@ -127,8 +132,12 @@ const withLayoutBasic = (Component: any) => {
 							className={`header-basic ${authHeader && 'auth'}`}
 							style={{
 								backgroundImage: `url(${memoizedValues.bgImage})`,
-								backgroundSize: 'cover',
-								boxShadow: 'inset 10px 40px 150px 40px rgb(24 22 36)',
+								width: '100%',
+								height: '900px', // Adjust the height as needed
+								backgroundSize: 'cover', // Ensure the image covers the container
+								backgroundPosition: 'center top', // Adjust position to center vertically from the top
+								overflow: 'hidden', // Hide overflow content if any
+								boxShadow: 'inset 40px 40px 150px 40px rgb(24 22 36)', // Optional: Box shadow styling
 							}}
 						>
 							<Stack className={'container'}>
