@@ -187,7 +187,7 @@ const Top = () => {
 								<div> {t('Agents')} </div>
 							</Link>
 							<Link href={'/community?articleCategory=FREE'}>
-								<div> {t('Community')} </div>
+								<div> {t('Article')} </div>
 							</Link>
 							{user?._id && (
 								<Link href={'/mypage'}>
@@ -195,7 +195,7 @@ const Top = () => {
 								</Link>
 							)}
 							<Link href={'/cs'}>
-								<div> {t('CS')} </div>
+								<div> {t('FAQ')} </div>
 							</Link>
 						</Box>
 						<Box component={'div'} className={'user-box'}>

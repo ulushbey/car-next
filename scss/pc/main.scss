@@ -80,9 +80,9 @@ body::-webkit-scrollbar {
 							position: relative;
 							color: #eeeeeeed;
 							font-family: $font;
-							font-size: 15px;
+							font-size: 25px;
 							font-style: normal;
-							font-weight: 600;
+							font-weight: 700;
 							line-height: normal;
 							cursor: pointer;
 							.community_menu {
@@ -114,12 +114,12 @@ body::-webkit-scrollbar {
 						flex-direction: row;
 						justify-content: flex-end;
 						.join-box {
-							width: 184px;
-							height: 47px;
+							width: 220px;
+							height: 50px;
 							display: flex;
 							align-items: center;
 							justify-content: center;
-							border-radius: 60px;
+							border-radius: 10px;
 							border: 1px solid #ffffff;
 							cursor: pointer;
 							svg {
@@ -128,9 +128,9 @@ body::-webkit-scrollbar {
 							}
 							span {
 								font-family: $font;
-								font-size: 14px;
+								font-size: 20px;
 								font-style: normal;
-								font-weight: 600;
+								font-weight: 800;
 								line-height: normal;
 								color: #ffffff;
 							}
@@ -423,13 +423,14 @@ body::-webkit-scrollbar {
 			height: 300px;
 		}
 		.container {
-			margin-top: 175px;
+			margin-top: 230px;
+			margin-left: 1000px;
 			strong {
 				color: #fff;
 				font-family: $font;
 				font-size: 48px;
 				font-style: normal;
-				font-weight: 600;
+				font-weight: 800;
 				line-height: normal;
 				letter-spacing: 0.96px;
 				text-transform: capitalize;
@@ -439,7 +440,7 @@ body::-webkit-scrollbar {
 				font-family: $font;
 				font-size: 24px;
 				font-style: normal;
-				font-weight: 400;
+				font-weight: 600;
 				line-height: 26px;
 			}
 		}

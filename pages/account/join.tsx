@@ -73,8 +73,8 @@ const Join: NextPage = () => {
 						<Stack className={'left'}>
 							{/* @ts-ignore */}
 							<Box className={'logo'}>
-								<img src="/img/logo/logoText.svg" alt="" />
-								<span>Nestar</span>
+								<img src="/img/logo/car8.png" alt="" />
+								<span>Car</span>
 							</Box>
 							<Box className={'info'}>
 								<span>{loginView ? 'login' : 'signup'}</span>
@@ -82,10 +82,10 @@ const Join: NextPage = () => {
 							</Box>
 							<Box className={'input-wrap'}>
 								<div className={'input-box'}>
-									<span>Nickname</span>
+									<span>Username</span>
 									<input
 										type="text"
-										placeholder={'Enter Nickname'}
+										placeholder={'Enter Username'}
 										onChange={(e) => handleInput('nick', e.target.value)}
 										required={true}
 										onKeyDown={(event) => {
@@ -162,7 +162,7 @@ const Join: NextPage = () => {
 										<FormGroup>
 											<FormControlLabel control={<Checkbox defaultChecked size="small" />} label="Remember me" />
 										</FormGroup>
-										<a>Lost your password?</a>
+										<a>Forget your password?</a>
 									</div>
 								)}
 
@@ -173,7 +173,7 @@ const Join: NextPage = () => {
 										disabled={input.nick == '' || input.password == ''}
 										onClick={doLogin}
 									>
-										LOGIN
+										Login
 									</Button>
 								) : (
 									<Button
@@ -182,31 +182,31 @@ const Join: NextPage = () => {
 										onClick={doSignUp}
 										endIcon={<img src="/img/icons/rightup.svg" alt="" />}
 									>
-										SIGNUP
+										Register
 									</Button>
 								)}
 							</Box>
 							<Box className={'ask-info'}>
 								{loginView ? (
 									<p>
-										Not registered yet?
+										If not registered?
 										<b
 											onClick={() => {
 												viewChangeHandler(false);
 											}}
 										>
-											SIGNUP
+											Register
 										</b>
 									</p>
 								) : (
 									<p>
 										Have account?
-										<b onClick={() => viewChangeHandler(true)}> LOGIN</b>
+										<b onClick={() => viewChangeHandler(true)}> Login</b>
 									</p>
 								)}
 							</Box>
 						</Stack>
-						<Stack className={'right'}></Stack>
+						{/* <Stack className={'right'}></Stack> */}
 					</Stack>
 				</Stack>
 			</Stack>

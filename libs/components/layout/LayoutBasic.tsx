@@ -51,7 +51,7 @@ const withLayoutBasic = (Component: any) => {
 				case '/mypage':
 					title = 'my page';
 					desc = 'Car / For Rent and Sale';
-					bgImage = '/img/banner/car/06.jpg';
+					bgImage = '/img/logo/01.jpg';
 					break;
 				case '/community':
 					title = 'Community';
@@ -66,7 +66,7 @@ const withLayoutBasic = (Component: any) => {
 				case '/cs':
 					title = 'CS';
 					desc = 'We are glad to see you again!';
-					bgImage = '/img/banner/banner.jpg';
+					bgImage = '/img/logo/01.jpg';
 					break;
 				case '/account/join':
 					title = 'Login/Signup';
