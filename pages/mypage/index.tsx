@@ -114,9 +114,6 @@ const MyPage: NextPage = () => {
 				<div className="container">
 					<Stack className={'my-page'}>
 						<Stack className={'back-frame'}>
-							<Stack className={'left-config'}>
-								<MyMenu />
-							</Stack>
 							<Stack className="main-config" mb={'76px'}>
 								<Stack className={'list-config'}>
 									{category === 'addProperty' && <AddProperty />}
@@ -143,6 +140,9 @@ const MyPage: NextPage = () => {
 										/>
 									)}
 								</Stack>
+							</Stack>
+							<Stack className={'left-config'}>
+								<MyMenu />
 							</Stack>
 						</Stack>
 					</Stack>

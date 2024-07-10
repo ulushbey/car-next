@@ -71,11 +71,25 @@ const PropertyCard = (props: PropertyCardType) => {
 					</Stack>
 					<Stack className="options">
 						<Stack className="option">
-							<img src="/img/icons/fuel.svg" alt="" className="small-icon" />{' '}
+							<img
+								src="/img/icons/fuel.svg"
+								alt=""
+								style={{
+									width: '20px',
+									height: '20px',
+								}}
+							/>
 							<Typography>{property.propertyFuel} </Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/manual.svg" alt="" className="small-icon" />{' '}
+							<img
+								src="/img/icons/manual.svg"
+								alt=""
+								style={{
+									width: '20px',
+									height: '20px',
+								}}
+							/>
 							<Typography>{property.propertyTransmission} </Typography>
 						</Stack>
 						<Stack className="option">

@@ -90,8 +90,10 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		background-color: #eef2f7;
-
+		// background: #f5f5dc;
+		// background: #e0f7fa;
+		background: #e6e6fa;
+		// background: #f5fffa;
 		.container {
 			display: flex;
 			flex-direction: column;
@@ -162,7 +164,7 @@
 				.agent-card {
 					width: calc(33.333% - 20px);
 					margin: 10px;
-					background: #639ab0;
+					background: #356476;
 					border: 1px solid #cccccc;
 					border-radius: 15px;
 					padding: 20px;

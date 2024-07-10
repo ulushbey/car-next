@@ -4,6 +4,7 @@ export default function Document() {
 	return (
 		<Html lang="en">
 			<Head>
+				<base href="/" />
 				<meta name="robots" content="index,follow" />
 				<link rel="icon" type="image/png" href="/img/logo/favicon.svg" />
 

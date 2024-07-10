@@ -58,7 +58,7 @@ const MyFavorites: NextPage = () => {
 	};
 
 	if (device === 'mobile') {
-		return <div>NESTAR MY FAVORITES MOBILE</div>;
+		return <div>CAR MY FAVORITES MOBILE</div>;
 	} else {
 		return (
 			<div id="my-favorites-page">
@@ -80,6 +80,7 @@ const MyFavorites: NextPage = () => {
 						</div>
 					)}
 				</Stack>
+
 				{myFavorites?.length ? (
 					<Stack className="pagination-config">
 						<Stack className="pagination-box">
@@ -93,7 +94,7 @@ const MyFavorites: NextPage = () => {
 						</Stack>
 						<Stack className="total-result">
 							<Typography>
-								Total {total} favorite propert{total > 1 ? 'ies' : 'y'}
+								Total {total} favorite car{total > 1 ? 's' : ''}
 							</Typography>
 						</Stack>
 					</Stack>

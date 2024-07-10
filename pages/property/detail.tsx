@@ -463,7 +463,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 										<img src={'/img/icons/2.webp'} alt={'image'} />
 									</Stack>
 								</Stack>
-								<Stack className={'address-config'}>
+								{/* <Stack className={'address-config'}>
 									<Typography className={'title'}>Address</Typography>
 									<Stack className={'map-box'}>
 										<iframe
@@ -476,7 +476,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 											referrerPolicy="no-referrer-when-downgrade"
 										></iframe>
 									</Stack>
-								</Stack>
+								</Stack> */}
 								{commentTotal !== 0 && (
 									<Stack className={'reviews-config'}>
 										<Stack className={'filter-box'}>
@@ -528,7 +528,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 											disabled={insertCommentData.commentContent === '' || user?._id === ''}
 											onClick={createCommentHandler}
 										>
-											<Typography className={'title'}>Submit Comment</Typography>
+											<Typography className={'title'}>Send Comment</Typography>
 											<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
 												<g clipPath="url(#clip0_6975_3642)">
 													<path
@@ -622,7 +622,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 							<Stack className={'similar-properties-config'}>
 								<Stack className={'title-pagination-box'}>
 									<Stack className={'title-box'}>
-										<Typography className={'main-title'}>Destination Property</Typography>
+										<Typography className={'main-title'}>Destination Car</Typography>
 										<Typography className={'sub-title'}>Aliquam lacinia diam quis lacus euismod</Typography>
 									</Stack>
 									<Stack className={'pagination-box'}>
