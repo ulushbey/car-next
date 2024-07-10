@@ -133,11 +133,11 @@ const withLayoutBasic = (Component: any) => {
 							style={{
 								backgroundImage: `url(${memoizedValues.bgImage})`,
 								width: '100%',
-								height: '900px', // Adjust the height as needed
+								height: '500px', // Adjust the height as needed
 								backgroundSize: 'cover', // Ensure the image covers the container
-								backgroundPosition: 'center top', // Adjust position to center vertically from the top
-								overflow: 'hidden', // Hide overflow content if any
-								boxShadow: 'inset 40px 40px 150px 40px rgb(24 22 36)', // Optional: Box shadow styling
+								backgroundPosition: 'center', // Adjust position to center vertically from the top
+								overflow: 'hidden',
+								boxShadow: 'inset 40px 40px 150px 40px rgb(24 22 36)',
 							}}
 						>
 							<Stack className={'container'}>

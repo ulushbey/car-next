@@ -480,7 +480,7 @@ const Filter = (props: FilterType) => {
 	};
 
 	if (device === 'mobile') {
-		return <div>PROPERTIES FILTER</div>;
+		return <div>Car FILTER</div>;
 	} else {
 		return (
 			<Stack className={'filter-main'}>

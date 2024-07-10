@@ -9,8 +9,9 @@
 				justify-content: space-between;
 				.right-box {
 					width: 315px;
+					margin-left: 400px;
 					.main-title {
-						color: #181a20;
+						color: #2c7e90;
 						font-family: $font;
 						font-size: 30px;
 						font-style: normal;
@@ -22,7 +23,8 @@
 				}
 			}
 			.properties-list-box {
-				margin-top: 85px;
+				margin-top: 65px;
+				margin-left: 20px;
 				.list-box {
 					.listing-title-box {
 						width: 100%;

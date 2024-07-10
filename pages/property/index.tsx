@@ -167,16 +167,12 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 						</div>
 					</Box>
 					<Stack className={'property-page'}>
-						<Stack className={'filter-config'}>
-							{/* @ts-ignore */}
-							<Filter searchFilter={searchFilter} setSearchFilter={setSearchFilter} initialInput={initialInput} />
-						</Stack>
 						<Stack className="main-config" mb={'76px'}>
 							<Stack className={'list-config'}>
 								{properties?.length === 0 ? (
 									<div className={'no-data'}>
 										<img src="/img/icons/icoAlert.svg" alt="" />
-										<p>No Properties found!</p>
+										<p>No Cars found!</p>
 									</div>
 								) : (
 									properties.map((property: Property) => {
@@ -202,11 +198,15 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 								{properties.length !== 0 && (
 									<Stack className="total-result">
 										<Typography>
-											Total {total} propert{total > 1 ? 'ies' : 'y'} available
+											Total {total} car{total > 1 ? 's' : ''} available
 										</Typography>
 									</Stack>
 								)}
 							</Stack>
+						</Stack>
+						<Stack className={'filter-config'}>
+							{/* @ts-ignore */}
+							<Filter searchFilter={searchFilter} setSearchFilter={setSearchFilter} initialInput={initialInput} />
 						</Stack>
 					</Stack>
 				</div>
