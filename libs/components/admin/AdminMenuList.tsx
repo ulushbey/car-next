@@ -89,12 +89,12 @@ const AdminMenuList = (props: any) => {
 			on_click: () => subMenuChangeHandler('Cars'),
 		},
 		{
-			title: 'Article',
+			title: 'Community',
 			icon: <ChatsCircle size={20} color="#bdbdbd" weight="fill" />,
 			on_click: () => subMenuChangeHandler('Community'),
 		},
 		{
-			title: 'FAQ',
+			title: 'Cs',
 			icon: <Headset size={20} color="#bdbdbd" weight="fill" />,
 			on_click: () => subMenuChangeHandler('Cs'),
 		},
@@ -102,7 +102,7 @@ const AdminMenuList = (props: any) => {
 
 	const sub_menu_set: any = {
 		Users: [{ title: 'List', url: '/_admin/users' }],
-		Properties: [{ title: 'List', url: '/_admin/properties' }],
+		Cars: [{ title: 'List', url: '/_admin/properties' }],
 		Community: [{ title: 'List', url: '/_admin/community' }],
 		Cs: [
 			{ title: 'FAQ', url: '/_admin/cs/faq' },
