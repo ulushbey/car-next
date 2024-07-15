@@ -7,7 +7,7 @@ const CounterArea = () => {
 
 	const counters = [
 		{
-			icon: 'flaticon-car-rental',
+			imageSrc: '/img/icons/faliton.svg',
 			count: 500,
 			title: '+ Available Cars',
 			delay: '.25s',

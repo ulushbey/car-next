@@ -13,6 +13,7 @@ import Chat from '../Chat';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import Advertisement from '../homepage/Advertisement';
 
 const withLayoutMain = (Component: any) => {
 	return (props: any) => {
@@ -62,10 +63,12 @@ const withLayoutMain = (Component: any) => {
 						</Stack>
 
 						<Stack className={'header-main'}>
-							<FiberContainer />
-							<Stack className={'container'}>
-								<HeaderFilter />
-							</Stack>
+							<Advertisement />
+							{/* <Stack className={'car-sit'}>
+								<img src="/img/banner/hero-1.png" alt="" />
+							</Stack> */}
+							{/* <FiberContainer /> */}
+							<Stack className={'container'}></Stack>
 						</Stack>
 
 						<Stack id={'main'}>

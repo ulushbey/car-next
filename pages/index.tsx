@@ -10,9 +10,14 @@ import TopProperties from '../libs/components/homepage/TopProperties';
 import { Stack } from '@mui/material';
 import Advertisement from '../libs/components/homepage/Advertisement';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import TopBrands from '../libs/components/homepage/TopBrands';
+import TopBrands from '../libs/components/homepage/CarCategory';
 import AboutUs from '../libs/components/homepage/aboutUs';
 import CounterArea from '../libs/components/homepage/CounterArea';
+import CarCategory from '../libs/components/homepage/CarCategory';
+import CarBrand from '../libs/components/homepage/CarBrand';
+import ChooseArea from '../libs/components/homepage/ChooseArea';
+import BlogArea from '../libs/components/homepage/BlogArea';
+import HeaderFilter from '../libs/components/homepage/HeaderFilter';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -36,15 +41,18 @@ const Home: NextPage = () => {
 	} else {
 		return (
 			<Stack className={'home-page'}>
-				<TrendProperties />
-				<TopBrands />
+				<CarBrand />
+				<HeaderFilter />
 				<AboutUs />
+				<TrendProperties />
+				<CarCategory />
+				<ChooseArea />
 				<PopularProperties />
-				<Advertisement />
+				<BlogArea />
+				{/* <Advertisement /> */}
 				<TopAgents />
 				<CounterArea />
 				<TopProperties />
-				<Events />
 				<CommunityBoards />
 			</Stack>
 		);
