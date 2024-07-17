@@ -106,17 +106,18 @@ const Faq: React.FC = () => {
 						onClick={() => filterFaqsByCategory(category)}
 						className={selectedCategory === category ? 'active' : ''}
 						sx={{
-							padding: '10px 20px',
-							borderRadius: '4px',
-							border: '1px solid',
-							borderColor: selectedCategory === category ? '#b30d9d' : '#BDBDBD',
-							backgroundColor: selectedCategory === category ? '#f5e5f7' : '#ffffff',
-							color: selectedCategory === category ? '#b30d9d' : '#BDBDBD',
+							padding: '12px 24px',
+							borderRadius: '8px',
+							border: '2px solid',
+							borderColor: selectedCategory === category ? '#007bff' : '#CED4DA',
+							backgroundColor: selectedCategory === category ? '#E9F7FE' : '#FFFFFF',
+							color: selectedCategory === category ? '#007bff' : '#6C757D',
 							cursor: 'pointer',
+							transition: 'all 0.3s ease',
 							'&:hover': {
-								borderColor: '#b30d9d',
-								backgroundColor: '#f5e5f7',
-								color: '#b30d9d',
+								borderColor: '#007bff',
+								backgroundColor: '#E9F7FE',
+								color: '#007bff',
 							},
 						}}
 					>
