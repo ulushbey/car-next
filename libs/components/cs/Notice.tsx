@@ -1,27 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stack, Box } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
+import { GET_NOTICES } from '../../../apollo/user/query';
+import { useQuery } from '@apollo/client';
+
+interface Notice {
+	_id: string;
+	noticeCategory: string;
+	noticeStatus: string;
+	noticeTitle: string;
+	noticeContent: string;
+	memberId: string;
+	createdAt: string;
+	updatedAt: string;
+}
+
+interface GetNoticesData {
+	getNotices: {
+		list: Notice[];
+	};
+}
+
+interface GetNoticesVars {
+	input: {
+		page: 1;
+		limit: 5;
+	};
+}
 
 const Notice = () => {
 	const device = useDeviceDetect();
-
-	/** APOLLO REQUESTS **/
-	/** LIFECYCLES **/
-	/** HANDLERS **/
-
-	const data = [
-		{
-			no: 1,
-			event: true,
-			title: 'Register to use and get discounts',
-			date: '01.03.2024',
+	const [notices, setNotices] = useState<Notice[]>([]);
+	const { loading, error, data, refetch } = useQuery<GetNoticesData, GetNoticesVars>(GET_NOTICES, {
+		fetchPolicy: 'network-only',
+		variables: { input: { page: 1, limit: 5 } }, // Replace with actual input if needed
+		notifyOnNetworkStatusChange: true,
+		onCompleted: (data) => {
+			setNotices(data?.getNotices?.list);
 		},
-		{
-			no: 2,
-			title: "It's absolutely free to upload and trade properties",
-			date: '31.03.2024',
-		},
-	];
+	});
+
+	useEffect(() => {
+		if (error) {
+			console.error('Error fetching notices:', error.message);
+		}
+	}, [error]);
+
+	if (loading) {
+		return <div>Loading...</div>;
+	}
 
 	if (device === 'mobile') {
 		return <div>NOTICE MOBILE</div>;
@@ -36,11 +63,13 @@ const Notice = () => {
 						<span>date</span>
 					</Box>
 					<Stack className={'bottom'}>
-						{data.map((ele: any) => (
-							<div className={`notice-card ${ele?.event && 'event'}`} key={ele.title}>
-								{ele?.event ? <div>event</div> : <span className={'notice-number'}>{ele.no}</span>}
-								<span className={'notice-title'}>{ele.title}</span>
-								<span className={'notice-date'}>{ele.date}</span>
+						{notices.map((ele, index) => (
+							<div className={`notice-card ${ele.noticeStatus === 'event' && 'event'}`} key={ele._id}>
+								{ele.noticeStatus === 'event' ? <div>event</div> : <span className={'notice-number'}>{index + 1}</span>}
+								<span className={'notice-title'}>{ele.noticeTitle}</span>
+								<span className={'notice-content'}>{ele.noticeContent}</span>
+
+								<span className={'notice-date'}>{new Date(ele.createdAt).toLocaleDateString()}</span>
 							</div>
 						))}
 					</Stack>

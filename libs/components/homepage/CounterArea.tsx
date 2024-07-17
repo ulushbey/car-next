@@ -34,7 +34,7 @@ const CounterArea = () => {
 
 	return (
 		<Box className="counter-area pt-30 pb-30">
-			<Grid container className="container">
+			<Grid container className="container" style={{ gap: '30px' }}>
 				{counters.map((counter, index) => (
 					<Grid
 						item
