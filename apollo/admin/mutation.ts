@@ -173,3 +173,35 @@ export const REMOVE_COMMENT_BY_ADMIN = gql`
 		}
 	}
 `;
+
+export const UPDATE_FAQ_BY_ADMIN = gql`
+	mutation UpdateFaqByAdmin($input: FaqUpdate!) {
+		updateFaqByAdmin(faqId: $input) {
+			_id
+			faqCategory
+			faqStatus
+			faqTitle
+			faqContent
+			faqViews
+			memberId
+			createdAt
+			updatedAt
+		}
+	}
+`;
+
+export const REMOVE_FAQ_BY_ADMIN = gql`
+	mutation RemoveFaqByAdmin($input: String!) {
+		removeFaqByAdmin(faqId: $input) {
+			_id
+			faqCategory
+			faqStatus
+			faqTitle
+			faqContent
+			faqViews
+			memberId
+			createdAt
+			updatedAt
+		}
+	}
+`;

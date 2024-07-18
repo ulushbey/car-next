@@ -209,3 +209,50 @@ export const GET_COMMENTS = gql`
 		}
 	}
 `;
+
+export const GET_ALL_FAQS_BY_ADMIN = gql`
+	query GetAllFaqsByAdmin($input: AllFaqsInquiry!) {
+		getAllFaqsByAdmin(input: $input) {
+			list {
+				_id
+				faqCategory
+				faqStatus
+				faqTitle
+				faqContent
+				faqViews
+				memberId
+				createdAt
+				updatedAt
+				memberData {
+					_id
+					memberType
+					memberStatus
+					memberAuthType
+					memberPhone
+					memberNick
+					memberFullName
+					memberImage
+					memberAddress
+					memberDesc
+					memberProperties
+					memberArticles
+					memberFollowers
+					memberFollowings
+					memberPoints
+					memberLikes
+					memberViews
+					memberComments
+					memberRank
+					memberWarnings
+					memberBlocks
+					deletedAt
+					createdAt
+					updatedAt
+				}
+			}
+			metaCounter {
+				total
+			}
+		}
+	}
+`;
