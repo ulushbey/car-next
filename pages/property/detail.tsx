@@ -30,7 +30,7 @@ import 'swiper/css/pagination';
 import { GET_COMMENTS, GET_PROPERTIES, GET_PROPERTY } from '../../apollo/user/query';
 import { Direction, Message } from '../../libs/enums/common.enum';
 import { T } from '../../libs/types/common';
-import { CREATE_COMMENT, LIKE_TARGET_PROPERTY } from '../../apollo/user/mutation';
+import { CREATE_COMMENT, CREATE_MESSAGE, LIKE_TARGET_PROPERTY } from '../../apollo/user/mutation';
 import { sweetErrorHandling, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
 import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
 import KeyIcon from '@mui/icons-material/Key';
@@ -88,6 +88,10 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 	const [commentInquiry, setCommentInquiry] = useState<CommentsInquiry>(initialComment);
 	const [propertyComments, setPropertyComments] = useState<Comment[]>([]);
 	const [commentTotal, setCommentTotal] = useState<number>(0);
+	const [name, setName] = useState('');
+	const [phone, setPhone] = useState('');
+	const [email, setEmail] = useState('');
+	const [message, setMessage] = useState('');
 	const [insertCommentData, setInsertCommentData] = useState<CommentInput>({
 		commentGroup: CommentGroup.PROPERTY,
 		commentContent: '',
@@ -97,6 +101,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 	/** APOLLO REQUESTS **/
 	const [likeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY);
 	const [createComment] = useMutation(CREATE_COMMENT);
+	const [sendMessage, { data, loading, error }] = useMutation(CREATE_MESSAGE);
 
 	const {
 		loading: getPropertyLoading,
@@ -209,6 +214,34 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
 			console.log('ERROR, likePropertyHandler:', err.message);
+			sweetMixinErrorAlert(err.message).then();
+		}
+	};
+
+	const handleSubmit = async (e: any) => {
+		e.preventDefault();
+
+		try {
+			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
+
+			await sendMessage({
+				variables: {
+					input: {
+						name,
+						phone,
+						email,
+						message,
+						propertyId,
+					},
+				},
+			});
+			setName('');
+			setPhone('');
+			setEmail('');
+			setMessage('');
+			await sweetTopSmallSuccessAlert('success', 800);
+		} catch (err: any) {
+			console.error('Error , send message', err.message);
 			sweetMixinErrorAlert(err.message).then();
 		}
 	};
@@ -582,7 +615,62 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 										</Stack>
 									</Stack>
 								</Stack>
-								<Stack className={'info-box'}>
+								<form onSubmit={handleSubmit}>
+									<Stack className={'info-box'}>
+										<Typography className={'sub-title'}>Name</Typography>
+										<input
+											type={'text'}
+											placeholder={'Enter your name'}
+											value={name}
+											onChange={(e) => setName(e.target.value)}
+										/>
+									</Stack>
+									<Stack className={'info-box'}>
+										<Typography className={'sub-title'}>Phone</Typography>
+										<input
+											type={'text'}
+											placeholder={'Enter your phone'}
+											value={phone}
+											onChange={(e) => setPhone(e.target.value)}
+										/>
+									</Stack>
+									<Stack className={'info-box'}>
+										<Typography className={'sub-title'}>Email</Typography>
+										<input
+											type={'text'}
+											placeholder={'Enter your email'}
+											value={email}
+											onChange={(e) => setEmail(e.target.value)}
+										/>
+									</Stack>
+									<Stack className={'info-box'}>
+										<Typography className={'sub-title'}>Message</Typography>
+										<textarea
+											placeholder={'Hello, I am interested in \n[Renovated property at floor]'}
+											value={message}
+											onChange={(e) => setMessage(e.target.value)}
+										></textarea>
+									</Stack>
+									<Stack className={'info-box'}>
+										<Button className={'send-message'} type="submit" disabled={loading}>
+											<Typography className={'title'}>Send Message</Typography>
+											<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+												<g clipPath="url(#clip0_6975_593)">
+													<path
+														d="M16.0556 0.5H6.2778C6.03214 0.5 5.83334 0.698792 5.83334 0.944458C5.83334 1.19012 6.03214 1.38892 6.2778 1.38892H14.9827L0.630219 15.7413C0.456594 15.915 0.456594 16.1962 0.630219 16.3698C0.71701 16.4566 0.83076 16.5 0.944469 16.5C1.05818 16.5 1.17189 16.4566 1.25872 16.3698L15.6111 2.01737V10.7222C15.6111 10.9679 15.8099 11.1667 16.0556 11.1667C16.3013 11.1667 16.5001 10.9679 16.5001 10.7222V0.944458C16.5 0.698792 16.3012 0.5 16.0556 0.5Z"
+														fill="white"
+													/>
+												</g>
+												<defs>
+													<clipPath id="clip0_6975_593">
+														<rect width="16" height="16" fill="white" transform="translate(0.5 0.5)" />
+													</clipPath>
+												</defs>
+											</svg>
+										</Button>
+									</Stack>
+								</form>
+								{/* <Stack className={'info-box'}>
 									<Typography className={'sub-title'}>Name</Typography>
 									<input type={'text'} placeholder={'Enter your name'} />
 								</Stack>
@@ -615,7 +703,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 											</defs>
 										</svg>
 									</Button>
-								</Stack>
+								</Stack> */}
 							</Stack>
 						</Stack>
 						{destinationProperties.length !== 0 && (

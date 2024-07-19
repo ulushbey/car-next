@@ -1,6 +1,10 @@
 export enum NotificationType {
 	LIKE = 'LIKE',
 	COMMENT = 'COMMENT',
+	PROPERTY = 'PROPERTY',
+	SUBSCRIBE = 'SUBSCRIBE',
+	UNSUBSCRIBE = 'UNSUBSCRIBE',
+	MESSAGE = 'MESSAGE',
 }
 
 export enum NotificationStatus {
