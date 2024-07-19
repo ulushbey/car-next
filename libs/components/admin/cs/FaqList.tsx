@@ -28,6 +28,7 @@ interface Data {
 	category: string;
 	title: string;
 	writer: string;
+	content: string;
 	date: string;
 	status: string;
 	id?: string;
@@ -67,10 +68,10 @@ const headCells: readonly HeadCell[] = [
 	},
 
 	{
-		id: 'writer',
+		id: 'content',
 		numeric: true,
 		disablePadding: false,
-		label: 'WRITER',
+		label: 'CONTENT',
 	},
 	{
 		id: 'date',
@@ -140,17 +141,8 @@ interface FaqArticlesPanelList {
 }
 
 export const FaqArticlesPanelList = (props: FaqArticlesPanelList) => {
-	const {
-		dense,
-		faqs,
-		membersData,
-		searchMembers,
-		removeFaqHandler,
-		menuIconClickHandler,
-		updateFaqHandler,
-		menuIconCloseHandler,
-		anchorEl,
-	} = props;
+	const { dense, faqs, removeFaqHandler, menuIconClickHandler, updateFaqHandler, menuIconCloseHandler, anchorEl } =
+		props;
 	const router = useRouter();
 
 	/** APOLLO REQUESTS **/

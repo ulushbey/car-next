@@ -13,7 +13,7 @@ export interface Faq {
 	faqViews: number;
 	memberId: string;
 	createdAt: string;
-	updatedAt: Date;
+	updatedAt: string;
 	/** from aggregation **/
 	memberData?: Member;
 }
