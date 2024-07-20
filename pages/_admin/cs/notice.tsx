@@ -22,6 +22,7 @@ import { T } from '../../../libs/types/common';
 import { sweetConfirmAlert, sweetErrorHandling } from '../../../libs/sweetAlert';
 import { NoticeCategory, NoticeStatus } from '../../../libs/enums/notice.enum';
 import { NoticeUpdate } from '../../../libs/types/notice/notice.update';
+import router from 'next/router';
 
 const AdminNotice: NextPage = ({ initialInquiry, ...props }: any) => {
 	const [anchorEl, setAnchorEl] = useState<any>([]);
@@ -155,6 +156,10 @@ const AdminNotice: NextPage = ({ initialInquiry, ...props }: any) => {
 		}
 	};
 
+	const handleAddButtonClick = () => {
+		router.push('/_admin/cs/notice_create');
+	};
+
 	console.log('+noticesInquiry', noticesInquiry);
 	console.log('+notices', notices);
 
@@ -168,6 +173,7 @@ const AdminNotice: NextPage = ({ initialInquiry, ...props }: any) => {
 					variant={'contained'}
 					zx
 					size={'medium'}
+					onClick={handleAddButtonClick}
 					// onClick={() => router.push(`/_admin/cs/faq_create`)}
 				>
 					<AddRoundedIcon sx={{ mr: '8px' }} />
@@ -184,21 +190,21 @@ const AdminNotice: NextPage = ({ initialInquiry, ...props }: any) => {
 									value="all"
 									className={'all' === 'all' ? 'li on' : 'li'}
 								>
-									All (0)
+									All
 								</ListItem>
 								<ListItem
 									onClick={(e: any) => tabChangeHandler(e, 'active')}
 									value="active"
 									className={'all' === 'all' ? 'li on' : 'li'}
 								>
-									Active (0)
+									Active
 								</ListItem>
 								<ListItem
 									onClick={(e: any) => tabChangeHandler(e, 'deleted')}
 									value="deleted"
 									className={'all' === 'all' ? 'li on' : 'li'}
 								>
-									Deleted (0)
+									Deleted
 								</ListItem>
 							</List>
 							<Divider />

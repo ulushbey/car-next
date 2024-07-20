@@ -6,7 +6,7 @@ export interface NoticeInput {
 	noticeCategory: NoticeCategory;
 	noticeTitle: string;
 	noticeContent: string;
-	memberId?: ObjectId;
+	memberId?: string;
 }
 
 export interface NoticeInquiry {

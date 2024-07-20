@@ -45,13 +45,6 @@ const InquiryArticles: NextPage = (props: any) => {
 									Active (0)
 								</ListItem>
 								<ListItem
-									// onClick={(e) => handleTabChange(e, 'blocked')}
-									value="blocked"
-									className={'all' === 'all' ? 'li on' : 'li'}
-								>
-									Blocked (0)
-								</ListItem>
-								<ListItem
 									// onClick={(e) => handleTabChange(e, 'deleted')}
 									value="deleted"
 									className={'all' === 'all' ? 'li on' : 'li'}

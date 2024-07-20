@@ -89,9 +89,6 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 			case 'ACTIVE':
 				setFaqsInquiry({ ...faqsInquiry, search: { faqStatus: FaqStatus.ACTIVE } });
 				break;
-			case 'BLOCK':
-				setFaqsInquiry({ ...faqsInquiry, search: { faqStatus: FaqStatus.BLOCK } });
-				break;
 			case 'DELETE':
 				setFaqsInquiry({ ...faqsInquiry, search: { faqStatus: FaqStatus.DELETE } });
 				break;
@@ -198,13 +195,6 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 									className={'all' === 'all' ? 'li on' : 'li'}
 								>
 									Active
-								</ListItem>
-								<ListItem
-									onClick={(e: any) => tabChangeHandler(e, 'BLOCK')}
-									value="blocked"
-									className={'all' === 'all' ? 'li on' : 'li'}
-								>
-									Blocked
 								</ListItem>
 								<ListItem
 									onClick={(e: any) => tabChangeHandler(e, 'DELETE')}

@@ -11,6 +11,5 @@ export enum FaqCategory {
 export enum FaqStatus {
 	HOLD = 'HOLD',
 	ACTIVE = 'ACTIVE',
-	BLOCK = 'BLOCK',
 	DELETE = 'DELETE',
 }

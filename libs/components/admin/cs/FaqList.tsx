@@ -219,7 +219,11 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelList) => {
 												</Button>
 											)}
 
-											{faq.faqStatus === FaqStatus.HOLD && <Button className={'badge warning'}>{faq.faqStatus}</Button>}
+											{faq.faqStatus === FaqStatus.HOLD && (
+												<Button onClick={(e: any) => menuIconClickHandler(e, index)} className={'badge warning'}>
+													{faq.faqStatus}
+												</Button>
+											)}
 
 											{faq.faqStatus === FaqStatus.ACTIVE && (
 												<>

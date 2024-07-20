@@ -38,7 +38,7 @@ const CreateFaq: NextPage = () => {
 	useEffect(() => {
 		setFaqData({
 			...faqData,
-			faqCategory: getFaqData?.getFaq ? getFaqData?.getFaq?.propertyTitle : '',
+			faqCategory: getFaqData?.getFaq ? getFaqData?.getFaq?.faqCategory : '',
 			faqTitle: getFaqData?.getFaq ? getFaqData?.getFaq?.faqTitle : '',
 			faqContent: getFaqData?.getFaq ? getFaqData?.getFaq?.faqContent : '',
 		});
