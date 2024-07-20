@@ -157,6 +157,10 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 		}
 	};
 
+	const handleAddButtonClick = () => {
+		router.push('/_admin/cs/faq_create');
+	};
+
 	console.log('+faqsInquiry', faqsInquiry);
 	console.log('+faqs', faqs);
 
@@ -170,6 +174,7 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 					variant={'contained'}
 					size={'medium'}
 					// onClick={() => router.push(`/_admin/cs/faq_create`)}
+					onClick={handleAddButtonClick}
 				>
 					<AddRoundedIcon sx={{ mr: '8px' }} />
 					ADD
@@ -185,28 +190,28 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 									value="all"
 									className={'all' === 'all' ? 'li on' : 'li'}
 								>
-									All (0)
+									All
 								</ListItem>
 								<ListItem
 									onClick={(e: any) => tabChangeHandler(e, 'ACTIVE')}
 									value="active"
 									className={'all' === 'all' ? 'li on' : 'li'}
 								>
-									Active (0)
+									Active
 								</ListItem>
 								<ListItem
 									onClick={(e: any) => tabChangeHandler(e, 'BLOCK')}
 									value="blocked"
 									className={'all' === 'all' ? 'li on' : 'li'}
 								>
-									Blocked (0)
+									Blocked
 								</ListItem>
 								<ListItem
 									onClick={(e: any) => tabChangeHandler(e, 'DELETE')}
 									value="deleted"
 									className={'all' === 'all' ? 'li on' : 'li'}
 								>
-									Deleted (0)
+									Deleted
 								</ListItem>
 							</List>
 							<Divider />

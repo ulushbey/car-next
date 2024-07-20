@@ -171,10 +171,7 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelList) => {
 										<Box component={'div'}>
 											{faq.faqTitle}
 											{faq.faqStatus === FaqStatus.ACTIVE && (
-												<Link
-													href={`/community/detail?articleCategory=${faq.faqCategory}&id=${faq._id}`}
-													className={'img_box'}
-												>
+												<Link href={`/cs/${faq.faqCategory}&id=${faq._id}`} className={'img_box'}>
 													<IconButton className="btn_window">
 														<Tooltip title={'Open window'}>
 															<OpenInBrowserRoundedIcon />

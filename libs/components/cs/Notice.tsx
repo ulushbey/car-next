@@ -3,7 +3,6 @@ import { Stack, Box } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { GET_NOTICES } from '../../../apollo/user/query';
 import { useQuery } from '@apollo/client';
-import { Height } from '@mui/icons-material';
 
 interface Notice {
 	_id: string;
@@ -55,7 +54,7 @@ const Notice = () => {
 		return <div>NOTICE MOBILE</div>;
 	} else {
 		return (
-			<Stack className={'notice-content'} style={{ width: '800px', Height: '700px' }}>
+			<Stack className={'notice-content'} style={{ width: '800px', height: '700px' }}>
 				<span className={'title'}>Notice</span>
 				<Stack className={'main'}>
 					<Box component={'div'} className={'top'}>

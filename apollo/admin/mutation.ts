@@ -206,6 +206,22 @@ export const REMOVE_FAQ_BY_ADMIN = gql`
 	}
 `;
 
+export const CREATE_FAQ_BY_ADMIN = gql`
+	mutation CreateFaqByAdmin($input: FaqInput!) {
+		createFaqByAdmin(input: $input) {
+			_id
+			faqCategory
+			faqStatus
+			faqTitle
+			faqContent
+			faqViews
+			memberId
+			createdAt
+			updatedAt
+		}
+	}
+`;
+
 export const UPDATE_NOTICE_BY_ADMIN = gql`
 	mutation UpdateNoticeByAdmin($input: NoticeUpdate!) {
 		updateNoticeByAdmin(noticeId: $input) {

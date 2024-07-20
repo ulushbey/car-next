@@ -692,6 +692,7 @@ export const GET_NOTICES = gql`
 export const GET_NOTIFICATION = gql`
 	query GetNotification($input: String!) {
 		getNotification(notificationId: $input) {
+			_id
 			notificationType
 			notificationStatus
 			notificationGroup
@@ -735,6 +736,7 @@ export const GET_NOTIFICATIONS = gql`
 	query GetNotifications($input: NotificationsInquiry!) {
 		getNotifications(input: $input) {
 			list {
+				_id
 				notificationType
 				notificationStatus
 				notificationGroup
@@ -773,6 +775,49 @@ export const GET_NOTIFICATIONS = gql`
 			}
 			metaCounter {
 				total
+			}
+		}
+	}
+`;
+
+export const GET_FAQ = gql`
+	query GetFaq($input: String!) {
+		getFaq(faqId: $input) {
+			_id
+			faqCategory
+			faqStatus
+			faqTitle
+			faqContent
+			faqViews
+			memberId
+			createdAt
+			updatedAt
+			memberData {
+				_id
+				memberType
+				memberStatus
+				memberAuthType
+				memberPhone
+				memberNick
+				memberFullName
+				memberImage
+				memberAddress
+				memberDesc
+				memberProperties
+				memberArticles
+				memberFollowers
+				memberFollowings
+				memberPoints
+				memberLikes
+				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
+				deletedAt
+				createdAt
+				updatedAt
+				accessToken
 			}
 		}
 	}
