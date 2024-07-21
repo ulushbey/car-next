@@ -245,7 +245,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 					<Stack className="main-box">
 						<Stack className="left-config">
 							<Stack className={'image-info'}>
-								<img src={'/img/logo/logoText.svg'} />
+								<img src={'/img/logo/car8.png'} />
 								<Stack className={'community-name'}>
 									<Typography className={'name'}>Community Board Article</Typography>
 								</Stack>
@@ -416,7 +416,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 																	updateButtonHandler(commentData?._id, CommentStatus.DELETE);
 																}}
 															>
-																<DeleteForeverIcon sx={{ color: '#757575', cursor: 'pointer' }} />
+																<DeleteForeverIcon sx={{ color: '#0d47a1', cursor: 'pointer' }} />
 															</IconButton>
 															<IconButton
 																onClick={(e: any) => {
@@ -426,7 +426,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 																	setOpenBackdrop(true);
 																}}
 															>
-																<EditIcon sx={{ color: '#757575' }} />
+																<EditIcon sx={{ color: '#0d47a1' }} />
 															</IconButton>
 															<Backdrop
 																sx={{
@@ -453,7 +453,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 																		boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
 																	}}
 																>
-																	<Typography variant="h4" color={'#b9b9b9'}>
+																	<Typography variant="h4" color={'#0d47a1'}>
 																		Update comment
 																	</Typography>
 																	<Stack gap={'20px'}>
