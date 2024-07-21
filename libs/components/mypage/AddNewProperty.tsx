@@ -21,20 +21,21 @@ import { CREATE_PROPERTY, UPDATE_PROPERTY } from '../../../apollo/user/mutation'
 import { GET_PROPERTY } from '../../../apollo/user/query';
 
 const CheckboxContainer = styled.div`
+	margin-top: 10px;
 	display: flex;
 	align-items: center;
 	margin-bottom: 8px;
 `;
 
 const StyledCheckbox = styled.input`
-	width: 20px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 	margin-right: 10px;
 	cursor: pointer;
 `;
 
 const StyledLabel = styled.label`
-	font-size: 18px;
+	font-size: 16px;
 	cursor: pointer;
 `;
 

@@ -139,27 +139,27 @@ const BlogArea = () => {
 	];
 
 	return (
-		<Box className={classes.blogArea}>
+		<Box className={classes.blogArea} component={'div'}>
 			<Grid container justifyContent="center">
 				<Grid item xs={12} className={classes.siteHeading}>
-					<Box className={classes.siteTitleTagline}>
+					<Box className={classes.siteTitleTagline} component={'div'}>
 						<i className="flaticon-drive" /> Our Blog
 					</Box>
 					<Typography variant="h2" className={classes.siteTitle}>
 						Latest News &amp; <span>Blog</span>
 					</Typography>
-					<Box className={classes.headingDivider} />
+					<Box className={classes.headingDivider} component={'div'} />
 				</Grid>
 			</Grid>
 			<Grid container spacing={4} justifyContent="center">
 				{blogItems.map((blog) => (
 					<Grid item key={blog.id} xs={12} md={6} lg={4}>
-						<Box className={`${classes.blogItem} wow fadeInUp`} data-wow-delay=".25s">
-							<Box className={classes.blogItemImg}>
+						<Box className={`${classes.blogItem} wow fadeInUp`} data-wow-delay=".25s" component={'div'}>
+							<Box className={classes.blogItemImg} component={'div'}>
 								<img src={blog.imgSrc} alt="Thumbnail" />
 							</Box>
-							<Box className="blog-item-info">
-								<Box className={classes.blogItemMeta}>
+							<Box className="blog-item-info" component={'div'}>
+								<Box className={classes.blogItemMeta} component={'div'}>
 									<ul>
 										<li>
 											<a href="#">

@@ -51,7 +51,7 @@ const Home: NextPage = () => {
 				<BlogArea />
 				{/* <Advertisement /> */}
 				<TopAgents />
-				<CounterArea />
+				{/* <CounterArea /> */}
 				<TopProperties />
 				<CommunityBoards />
 			</Stack>
