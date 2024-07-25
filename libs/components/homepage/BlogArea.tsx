@@ -39,8 +39,8 @@ const useStyles = makeStyles({
 	},
 	blogItem: {
 		marginBottom: '30px',
-		paddingRight: '20px',
-		paddingLeft: '20px',
+		paddingRight: '10px',
+		paddingLeft: '10px',
 
 		transition: 'transform 0.3s ease',
 		'&:hover': {
@@ -49,8 +49,8 @@ const useStyles = makeStyles({
 	},
 	blogItemImg: {
 		marginBottom: '10px',
-		paddingRight: '20px',
-		paddingLeft: '40px',
+		paddingRight: '10px',
+		paddingLeft: '10px',
 
 		'& img': {
 			width: '100%',
@@ -61,7 +61,7 @@ const useStyles = makeStyles({
 		listStyle: 'none',
 		padding: 0,
 		marginBottom: '10px',
-		marginLeft: '40px',
+		marginLeft: '10px',
 		'& li': {
 			display: 'inline-block',
 			marginRight: '10px',
@@ -79,7 +79,7 @@ const useStyles = makeStyles({
 	blogTitle: {
 		fontSize: '24px',
 		marginBottom: '10px',
-		marginLeft: '40px',
+		marginLeft: '10px',
 		'& a': {
 			color: '#333',
 			textDecoration: 'none',
@@ -89,7 +89,7 @@ const useStyles = makeStyles({
 		},
 	},
 	themeBtn: {
-		marginLeft: '40px',
+		marginLeft: '10px',
 		paddingLeft: '20px',
 		display: 'inline-block',
 		padding: '10px 10px',

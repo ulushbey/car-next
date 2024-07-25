@@ -69,6 +69,7 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 		console.log('searchFilter', searchFilter);
 		// getPropertiesRefetch({ input: searchFilter }).then();
 	}, [searchFilter]);
+
 	/** HANDLERS **/
 	const handlePaginationChange = async (event: ChangeEvent<unknown>, value: number) => {
 		searchFilter.page = value;
@@ -113,6 +114,8 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 			case 'new':
 				setSearchFilter({ ...searchFilter, sort: 'createdAt', direction: Direction.ASC });
 				setFilterSortName('New');
+				console.log('searchFilter', searchFilter);
+				console.log('e.currentTarget.id', e.currentTarget.id);
 				break;
 			case 'lowest':
 				setSearchFilter({ ...searchFilter, sort: 'propertyPrice', direction: Direction.ASC });
@@ -220,7 +223,7 @@ PropertyList.defaultProps = {
 		page: 1,
 		limit: 9,
 		sort: 'createdAt',
-		direction: 'DESC',
+		direction: 'DESC', // Ensure defaultProps use the correct enum type
 		search: {
 			mileageRange: {
 				start: 0,
