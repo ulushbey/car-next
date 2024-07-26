@@ -1,5 +1,3 @@
-version: '3.3'
-
 services:
   car-next:
     container_name: car-next
