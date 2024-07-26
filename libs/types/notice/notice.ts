@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongoose';
 import { Member } from '../member/member';
 import { NoticeCategory, NoticeStatus } from '../../enums/notice.enum';
 import { TotalCounter } from '../property/property';
@@ -11,7 +10,7 @@ export interface Notice {
 	noticeContent: string;
 	question: string;
 	answer: string;
-	memberId: ObjectId;
+	memberId: string;
 	createdAt: string;
 	updatedAt: string;
 	/** from aggregation **/

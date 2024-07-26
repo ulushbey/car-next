@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongoose';
 import { Direction } from '../../enums/common.enum';
 import { FaqCategory, FaqStatus } from '../../enums/faq.enum';
 
@@ -6,7 +5,7 @@ export interface FaqInput {
 	faqCategory: FaqCategory;
 	faqTitle: string;
 	faqContent: string;
-	memberId?: ObjectId;
+	memberId?: string;
 }
 
 export interface FaqInquiry {

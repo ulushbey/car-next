@@ -9,16 +9,16 @@ const AboutUs = () => {
 		return <div className="about-card">ABOUT US</div>;
 	} else {
 		return (
-			<Box className="about-area pb-120">
+			<Box className="about-area pb-120" component={'div'}>
 				<Grid container className="container">
 					<Grid container alignItems="center">
 						<Grid item lg={6}>
-							<Box className="about-left wow fadeInLeft" data-wow-delay=".25s">
-								<Box className="about-img">
+							<Box className="about-left wow fadeInLeft" data-wow-delay=".25s" component={'div'}>
+								<Box className="about-img" component={'div'}>
 									<img src="assets/img/about/01.png" alt="About Us" />
 								</Box>
-								<Box className="about-experience">
-									<Box className="about-experience-icon">
+								<Box className="about-experience" component={'div'}>
+									<Box className="about-experience-icon" component={'div'}>
 										<i className="flaticon-car" />
 									</Box>
 									<Typography variant="body1" component="b">
@@ -28,8 +28,8 @@ const AboutUs = () => {
 							</Box>
 						</Grid>
 						<Grid item lg={6}>
-							<Box className="about-right wow fadeInRight" data-wow-delay=".25s">
-								<Box className="site-heading mb-3">
+							<Box className="about-right wow fadeInRight" data-wow-delay=".25s" component={'div'}>
+								<Box className="site-heading mb-3" component={'div'}>
 									<Typography variant="subtitle1" className="site-title-tagline justify-content-start">
 										<i className="flaticon-drive" /> About Us
 									</Typography>
@@ -41,7 +41,7 @@ const AboutUs = () => {
 									There are many variations of passages of Lorem Ipsum available, but the majority have suffered
 									alteration in some form, by injected humour.
 								</Typography>
-								<Box className="about-list-wrapper">
+								<Box className="about-list-wrapper" component={'div'}>
 									<ul className="about-list list-unstyled">
 										<li>At vero eos et accusamus et iusto odio.</li>
 										<li>Established fact that a reader will be distracted.</li>

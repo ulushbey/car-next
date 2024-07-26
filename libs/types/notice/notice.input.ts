@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongoose';
 import { Direction } from '../../enums/common.enum';
 import { NoticeCategory, NoticeStatus } from '../../enums/notice.enum';
 

@@ -33,7 +33,7 @@ const CounterArea = () => {
 	];
 
 	return (
-		<Box className="counter-area pt-30 pb-30">
+		<Box className="counter-area pt-30 pb-30" component={'div'}>
 			<Grid container className="container" style={{ gap: '30px' }}>
 				{counters.map((counter, index) => (
 					<Grid
@@ -45,10 +45,10 @@ const CounterArea = () => {
 						className="counter-box wow fadeInUp"
 						data-wow-delay={counter.delay}
 					>
-						<Box className="icon">
+						<Box className="icon" component={'div'}>
 							<i className={counter.icon} />
 						</Box>
-						<Box>
+						<Box component={'div'}>
 							<Typography
 								variant="h4"
 								component="span"

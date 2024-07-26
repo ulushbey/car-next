@@ -335,21 +335,21 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<span>{searchFilter?.search?.locationList ? searchFilter?.search?.locationList[0] : t('Location')} </span>
 							<ExpandMoreIcon />
 						</Box>
-						<Box className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler}>
+						<Box className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler} component={'div'}>
 							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Car type')}</span>
 							<ExpandMoreIcon />
 						</Box>
-						<Box className={`box ${openFuels ? 'on' : ''}`} onClick={fuelStateChangeHandler}>
+						<Box className={`box ${openFuels ? 'on' : ''}`} onClick={fuelStateChangeHandler} component={'div'}>
 							<span>{searchFilter?.search?.typeFuel ? `${searchFilter?.search?.typeFuel[0]}` : t('Fuels')}</span>
 							<ExpandMoreIcon />
 						</Box>
 					</Stack>
 					<Stack className={'search-box-other'}>
-						<Box className={'advanced-filter'} onClick={() => advancedFilterHandler(true)}>
+						<Box className={'advanced-filter'} onClick={() => advancedFilterHandler(true)} component={'div'}>
 							<img src="/img/icons/tune.svg" alt="" />
 							<span>{t('Advanced')}</span>
 						</Box>
-						<Box className={'search-btn'} onClick={pushSearchHandler}>
+						<Box className={'search-btn'} onClick={pushSearchHandler} component={'div'}>
 							<img src="/img/icons/search_white.svg" alt="" />
 						</Box>
 					</Stack>
@@ -400,7 +400,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				>
 					{/* @ts-ignore */}
 					<Box sx={style}>
-						<Box className={'advanced-filter-modal'}>
+						<Box className={'advanced-filter-modal'} component={'div'}>
 							<div className={'close'} onClick={() => advancedFilterHandler(false)}>
 								<CloseIcon />
 							</div>

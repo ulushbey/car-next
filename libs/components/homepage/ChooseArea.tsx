@@ -38,12 +38,12 @@ const chooseItems = [
 
 const ChooseArea = () => {
 	return (
-		<Box className="choose-area py-120">
+		<Box className="choose-area py-120" component="div">
 			<Grid container className="container">
 				<Grid container alignItems="center">
 					<Grid item lg={6} xs={12}>
-						<Box className="choose-content">
-							<Box className="site-heading wow fadeInDown" data-wow-delay=".25s">
+						<Box className="choose-content" component="div">
+							<Box className="site-heading wow fadeInDown" data-wow-delay=".25s" component="div">
 								<Typography component="span" className="site-title-tagline text-white justify-content-start">
 									<i className="flaticon-drive" /> Why Choose Us
 								</Typography>
@@ -55,22 +55,22 @@ const ChooseArea = () => {
 									going to use a passage by injected humour randomised words which don't look even slightly believable.
 								</Typography>
 							</Box>
-							<Box className="choose-img wow fadeInUp" data-wow-delay=".25s">
+							<Box className="choose-img wow fadeInUp" data-wow-delay=".25s" component="div">
 								<img src="assets/img/choose/01.png" alt="" />
 							</Box>
 						</Box>
 					</Grid>
 					<Grid item lg={6} xs={12}>
-						<Box className="choose-content-wrapper wow fadeInRight" data-wow-delay=".25s">
+						<Box className="choose-content-wrapper wow fadeInRight" data-wow-delay=".25s" component="div">
 							<Grid container spacing={2}>
 								{chooseItems.map((item, index) => (
 									<Grid item xs={12} md={6} key={index} className="mt-lg-5">
-										<Box className="choose-item">
+										<Box className="choose-item" component="div">
 											<span className="choose-count">{item.count}</span>
-											<Box className="choose-item-icon">
+											<Box className="choose-item-icon" component="div">
 												<i className={item.iconClass} />
 											</Box>
-											<Box className="choose-item-info">
+											<Box className="choose-item-info" component="div">
 												<Typography variant="h3">{item.title}</Typography>
 												<Typography>{item.description}</Typography>
 											</Box>
