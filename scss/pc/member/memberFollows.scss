@@ -12,8 +12,9 @@
 			justify-content: space-between;
 			.right-box {
 				width: 315px;
+				margin-left: 400px;
 				.main-title {
-					color: #181a20;
+					color: #2c7e90;
 					font-family: $font;
 					font-size: 30px;
 					font-style: normal;
@@ -27,7 +28,7 @@
 		.follows-list-box {
 			width: 100%;
 			margin-top: 85px;
-			margin-left: 20px;
+			margin-left: 50px;
 			gap: 15px;
 			.listing-title-box {
 				width: 100%;

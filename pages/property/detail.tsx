@@ -205,7 +205,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 					page: 1,
 					limit: 4,
 					sort: 'createdAt',
-					direction: Direction.DESC,
+					// direction: Direction.DESC,
 					search: {
 						locationList: [property?.propertyLocation],
 					},
