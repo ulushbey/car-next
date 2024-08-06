@@ -13,7 +13,6 @@ import { useTranslation } from 'next-i18next';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Height } from '@mui/icons-material';
 
 const withLayoutBasic = (Component: any) => {
 	return (props: any) => {
@@ -32,7 +31,7 @@ const withLayoutBasic = (Component: any) => {
 				case '/property':
 					title = 'Car Search';
 					desc = 'We are glad to see you again!';
-					bgImage = '/img/banner/banner.jpg';
+					bgImage = '/img/banner/car/33.jpg';
 					// bgImage = '/img/banner/car/single-2.jpg';
 					// bgImage = '/img/banner/car/05.jpg';
 					// bgImage = '/img/banner/car/04.jpg';
